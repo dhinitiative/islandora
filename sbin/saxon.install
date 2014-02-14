@@ -4,7 +4,7 @@
 #
 # is licensed under a Creative Commons Attribution 4.0 International License.
 # http://creativecommons.org/licenses/by/4.0/deed.en_US
-# Based on a work at http://github.com/hamhpc/islandora.git.
+# Based on a work at http://github.com/dhinitiative/islandora.git.
 # Permissions beyond the scope of this license may be available at http://www.hamilton.edu.
 
 #
@@ -30,7 +30,7 @@
 #
 cd $SRC_DIR
 wget -N -P $SRC_DIR "http://downloads.sourceforge.net/project/saxon/Saxon-HE/9.5/SaxonHE9-5-1-4J.zip?r=http%3A%2F%2Fsourceforge.net%2Fprojects%2Fsaxon%2Ffiles%2FSaxon-HE%2F9.5%2F&ts=1390926754&use_mirror=softlayer-dal"
-unzip SaxonHE9-5-1-4J.zi
+unzip SaxonHE9-5-1-4J.zip
 cp saxon_file ${FEDORA_HOME}/tomcat/webapps
 sleep 60   # wait for war to load in fedora
 mv ${FEDORA_HOME}/tomcat/webapps/saxon/WEB-INF/web.xml ${FEDORA_HOME}/tomcat/webapps/saxon/WEB-INF/web.xml-orig
