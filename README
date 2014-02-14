@@ -3,7 +3,7 @@ by Steve Young (SLY), Hamilton College 2014
 
 is licensed under a Creative Commons Attribution 4.0 International License.
 http://creativecommons.org/licenses/by/4.0/deed.en_US
-Based on a work at http://github.com/hamhpc/islandora.git.
+Based on a work at http://github.com/dhinitiative/islandora.git.
 Permissions beyond the scope of this license may be available at http://www.hamilton.edu.
 
 #
@@ -22,7 +22,7 @@ It is assumed that you have created two MySQL databases. One for Drupal and one 
 This software branch is used in the installation of Islandora, fedora, drupal.
 
 It is called from a RedHat based kickstart server installer 
-(https://github.com/hamhpc/kickstart/blob/master/ks_islandora.cfg)
+(https://github.com/dhinitiative/kickstart/blob/master/ks_islandora.cfg)
 
 (note: you can comment out the kickstart portion of the above file and run it directly as a script). 
 
