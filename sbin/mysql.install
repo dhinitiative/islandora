@@ -1,0 +1,55 @@
+#!/bin/bash -x
+# Islandora Software Installation Framework (ISIF)
+# by Steve Young (SLY), Hamilton College 2014
+#
+# is licensed under a Creative Commons Attribution 4.0 International License.
+# http://creativecommons.org/licenses/by/4.0/deed.en_US
+# Based on a work at http://github.com/dhinitiative/islandora.git.
+# Permissions beyond the scope of this license may be available at http://www.hamilton.edu.
+
+#
+# Revisions
+#
+# 3/1/2014 - SLY - Initial Creation
+
+
+#
+# Script to automatically install mysql
+#
+
+
+#
+#
+# Source environment
+. ../etc/env.sh
+. ../etc/database.sh
+
+#
+# install mysql
+#
+yum install -y mysql
+yum install -y mysqld
+yum install -y mysql-server
+
+#
+# Make sure it's running
+#
+service mysqld start
+
+#
+# configure mysql
+#
+## Change root account
+#
+/usr/bin/mysqladmin -u root password 'new-password'
+/usr/bin/mysqladmin -u root -h digitalud.dbq.edu password 'new-password'
+#
+## Create Drupal DB and User
+#
+mysql -u base_user -pbase_user_pass -e "create database new_db; GRANT ALL PRIVILEGES ON new_db.* TO new_db_user@localhost IDENTIFIED BY 'new_db_user_pass'"
+#
+## Create Fedora DB and user
+#
+mysql -u base_user -pbase_user_pass -e "create database new_db; GRANT ALL PRIVILEGES ON new_db.* TO new_db_user@localhost IDENTIFIED BY 'new_db_user_pass'"
+
+
