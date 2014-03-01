@@ -26,13 +26,6 @@
 #
 # yum -y install <package_name>-<package-version>
 #
-yum -y install httpd
-yum -y install php
-yum -y install php-mysql
-yum -y install php-gd
-yum -y install php-pear
-yum -y install php-mbstring
-yum -y install php-xml
 yum -y install gcc
 yum -y install gcc-c++
 yum -y install autoconf
