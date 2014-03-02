@@ -41,15 +41,14 @@ service mysqld start
 #
 ## Change root account
 #
-/usr/bin/mysqladmin -u root password 'new-password'
-/usr/bin/mysqladmin -u root -h digitalud.dbq.edu password 'new-password'
+/usr/bin/mysqladmin -u root -h $DB_SERVER password '$ROOT_MYSQL_PASS'
 #
 ## Create Drupal DB and User
 #
-mysql -u base_user -pbase_user_pass -e "create database new_db; GRANT ALL PRIVILEGES ON new_db.* TO new_db_user@localhost IDENTIFIED BY 'new_db_user_pass'"
+mysql -u root -p$ROOT_MYSQL_PASS -e "create database $DRUPAL_DB_NAME; GRANT ALL PRIVILEGES ON $DRUPAL_DB_NAME.* TO $DRUPAL_DB_USER@localhost IDENTIFIED BY '$DRUPAL_DB_PASS'"
 #
 ## Create Fedora DB and user
 #
-mysql -u base_user -pbase_user_pass -e "create database new_db; GRANT ALL PRIVILEGES ON new_db.* TO new_db_user@localhost IDENTIFIED BY 'new_db_user_pass'"
+mysql -u root -p$ROOT_MYSQL_PASS -e "create database $FEDORA_DB_NAME; GRANT ALL PRIVILEGES ON $FEDORA_DB_NAME.* TO $FEDORA_DB_USER@localhost IDENTIFIED BY '$FEDORA_DB_PASS'"
 
 
