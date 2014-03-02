@@ -52,3 +52,11 @@ mysql -u root -p$ROOT_MYSQL_PASS -e "create database $DRUPAL_DB_NAME; GRANT ALL 
 mysql -u root -p$ROOT_MYSQL_PASS -e "create database $FEDORA_DB_NAME; GRANT ALL PRIVILEGES ON $FEDORA_DB_NAME.* TO $FEDORA_DB_USER@localhost IDENTIFIED BY '$FEDORA_DB_PASS'"
 
 
+#
+# Install phpmyadmin
+#
+cd $SRC_DIR
+wget http://downloads.sourceforge.net/project/phpmyadmin/phpMyAdmin/4.1.8/phpMyAdmin-4.1.8-english.tar.gz
+tar -zxvf phpMyAdmin-4.1.8-english.tar.gz
+mv phpMyAdmin-4.1.8-english phpMyAdmin
+
