@@ -44,6 +44,7 @@ ln -s $ISLANDORA_PKGS/adore-djatoka-1.1/bin/Linux-x86-64/kdu_expand /usr/bin/kdu
 # update logging
 #
 mv $CATALINA_HOME/webapps/adore-djatoka/WEB-INF/classes/log4j.properties $CATALINA_HOME/webapps/adore-djatoka/WEB-INF/classes/log4j.properties-orig
+sed -i "s|FEDORA_HOME_TO_CHANGE|$FEDORA_HOME|g" ../etc/log4j.properties-djatoka
 cp ../etc/log4j.properties-djatoka $CATALINA_HOME/webapps/adore-djatoka/WEB-INF/classes/log4j.properties
 #
 # install updated tomcat startup for Djatoka
