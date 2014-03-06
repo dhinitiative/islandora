@@ -1,6 +1,6 @@
 # REPORTING LEVELS: OFF, DEBUG, INFO, WARN, ERROR and  FATAL
 
-log.dir=${FEDORA_HOME}/server/logs
+log.dir=FEDORA_HOME_TO_CHANGE/server/logs
 datestamp=yyyy-MM-dd/HH:mm:ss.SSS/zzz
 roll.pattern.hourly=.yyyy-MM-dd.HH
 roll.pattern.daily=.yyyy-MM-dd
