@@ -46,6 +46,7 @@ rpm -ivh http://download1.rpmfusion.org/free/el/updates/6/i386/rpmfusion-free-re
 #
 yum -y install ffmpeg
 yum -y install xpdf
+yum -y install lame
 #
 # ffmpeg2theora
 #
