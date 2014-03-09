@@ -52,6 +52,7 @@ cp ../etc/log4j.properties-djatoka $CATALINA_HOME/webapps/adore-djatoka/WEB-INF/
 #
 mv ${FEDORA_HOME}/tomcat/bin/startup.sh ${FEDORA_HOME}/tomcat/bin/startup.sh-orig
 cp ../etc/startup.sh-tomcat ${FEDORA_HOME}/tomcat/bin/startup.sh
+chmod 755 ${FEDORA_HOME}/tomcat/bin/startup.sh
 mv $ISLANDORA_PKGS/adore-djatoka-1.1/bin/env.sh $ISLANDORA_PKGS/adore-djatoka-1.1/bin/env.sh-orig
 cp $ISLANDORA_HOME/etc/adore-djatoka-env.sh $ISLANDORA_PKGS/adore-djatoka-1.1/bin/env.sh
 
