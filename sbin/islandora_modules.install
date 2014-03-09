@@ -124,7 +124,7 @@ cd $DRUPAL_ROOT
 #############################################################################
 drush vset islandora_base_url "http://localhost:8080/fedora"
 drush vset islandora_repository_pid "islandora:root"
-drush vset islandora_namespace_restriction_enforced 1
+drush vset islandora_namespace_restriction_enforced 0
 
 #############################################################################
 #***enable islandora and other modules (plus related settings) for each individual island***
