@@ -81,6 +81,14 @@ drush dl -y pixture_reloaded
 drush dl -y bootstrap
 drush dl -y jquery_update
 
+#
+## Install Stanford's Open Framework Theme
+#
+cd $DRUPAL_ROOT/sites/all/themes
+git clone https://github.com/SU-SWS/open_framework.git
+chown -R $FEDORA_USER:$FEDORA_USER open_framework
+cd $DRUPAL_ROOT
+
 ##########################################################
 #***we do need to enable the islandora pre-req modules ***
 ##########################################################
@@ -115,8 +123,8 @@ drush en -y quicktabs_tabstyles
 #***default theme settings
 #############################################################################
 
-#drush en -y pixture_reloaded_williams
-#drush vset theme_default pixture_reloaded_williams
+drush en -y open_framework
+drush vset theme_default open_framework
 # NOTE: SETUPNOTE- this is (currently) specific to Williams college; ideally this would be a generic islandora-compatible theme that could be easily customized to your institution and each site/project
 # drush vset theme_settings --format=json '{"toggle_logo":1,"toggle_name":0,"toggle_slogan":0,"toggle_node_user_picture":0,"toggle_comment_user_picture":0,"toggle_comment_user_verification":0,"toggle_favicon":0,"toggle_main_menu":1,"toggle_secondary_menu":1,"default_logo":1,"logo_path":"","logo_upload":"","default_favicon":1,"favicon_path":"","favicon_upload":""}'
 #drush vset theme_seven_settings --format=json '{"toggle_logo":1,"toggle_name":0,"toggle_slogan":0,"toggle_node_user_picture":0,"toggle_comment_user_picture":0,"toggle_comment_user_verification":0,"toggle_favicon":1,"toggle_main_menu":1,"toggle_secondary_menu":1,"default_logo":1,"logo_path":"","logo_upload":"","default_favicon":1,"favicon_path":"","favicon_upload":""}'
