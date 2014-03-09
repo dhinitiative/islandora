@@ -65,6 +65,7 @@ chmod -R 775 $DRUPAL_ROOT/sites/default/files
 
 #get dependencies
 cd $DRUPAL_ROOT
+drush dl -y jquery_update
 drush dl -y views
 drush dl -y ctools
 drush dl -y imagemagick
@@ -79,7 +80,6 @@ drush dl -y strongarm
 drush dl -y adaptivetheme
 drush dl -y pixture_reloaded
 drush dl -y bootstrap
-drush dl -y jquery_update
 
 #
 ## Install Stanford's Open Framework Theme
