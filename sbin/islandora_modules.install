@@ -140,7 +140,7 @@ drush en -y xml_forms
 drush en -y islandora_audio
 ##
 drush vset --format=json islandora_audio_viewers '{"name":{"none":"none","$default_audio_viewer":"$default_audio_viewer"},"default":"$default_audio_viewer"}'
-drush vset islandora_lame_url "$ISLANDORA_HOME/bin/lame"
+drush vset islandora_lame_url "/usr/bin/lame"
 
 drush en -y islandora-importer
 drush en -y islandora-batch
