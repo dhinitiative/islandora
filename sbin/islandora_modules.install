@@ -203,7 +203,7 @@ drush en -y zip_importer
 drush en -y islandora_pdf
 ##
 drush vset islandora_pdf_allow_text_upload "1"
-drush vset islandora_pdf_create_fulltext "0"
+drush vset islandora_pdf_create_fulltext "1"
 drush vset islandora_pdf_path_to_pdftotext "/usr/bin/pdftotext"
 drush vset islandora_pdf_preview_height "700"
 drush vset islandora_pdf_preview_width "500"
