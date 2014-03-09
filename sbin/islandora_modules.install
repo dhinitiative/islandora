@@ -273,7 +273,7 @@ drush vset islandora_batch_java "$JAVA_HOME/bin/java"
 #
 # update drupal
 #
-drush update 
+drush up
 
 #
 # update policy manually
