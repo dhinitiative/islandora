@@ -25,7 +25,8 @@
 ## Adore Djatoka install
 #
 cd $SRC_DIR
-wget -N -P $SRC_DIR http://sourceforge.net/projects/djatoka/files/latest/download?source=files
+
+wget -N -P $SRC_DIR http://downloads.sourceforge.net/project/djatoka/djatoka/1.1/adore-djatoka-1.1.tar.gz
 tar -zxvf adore-djatoka-1.1.tar.gz -C $ISLANDORA_PKGS
 chown -R $FEDORA_USER:$FEDORA_USER $SRC_DIR/adore-djatoka-1.1
 cp $ISLANDORA_PKGS/adore-djatoka-1.1/dist/adore-djatoka.war $CATALINA_HOME/webapps/
