@@ -133,6 +133,6 @@ drush vset theme_default open_framework
 drush en -y fe_block
 drush en -y strongarm
 
-drush update
+drush up
 
 
