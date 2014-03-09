@@ -34,6 +34,7 @@ yum -y install ImageMagick
 yum -y install ghostscript
 yum -y install ant
 yum -y install git
+yum -y install unzip
 #
 # Enable EPEL
 #
