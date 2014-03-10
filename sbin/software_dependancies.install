@@ -96,3 +96,9 @@ done
 
 # link fits.sh 
 ln -s $ISLANDORA_HOME/packages/fits-0.6.2/fits.sh $ISLANDORA_HOME/bin/fits.sh
+
+#
+## Add in tesseract language pack
+#
+wget -N -P $SRC_DIR https://tesseract-ocr.googlecode.com/files/tesseract-ocr-3.02.eng.tar.gz
+tar -zxvf -C $ISLANDORA_HOME/share tesseract-ocr-3.02.eng.tar.gz
