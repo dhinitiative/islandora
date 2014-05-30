@@ -69,6 +69,7 @@ mkdir -p $DRUPAL_ROOT/sites/all/libraries
 cd $DRUPAL_ROOT/sites/all/libraries
 git clone https://github.com/Islandora/tuque.git
 git clone https://github.com/thatcher/openseadragon.git
+git clone git://github.com/openlibrary/bookreader.git
 #
 # get drupal_filter
 #
