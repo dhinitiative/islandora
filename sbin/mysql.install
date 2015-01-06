@@ -64,6 +64,9 @@ chown -R apache:apache /var/www/html
 #
 # Copy in phpMyAdmin config. 
 #
-# cp ..../phpmyadmin.conf /etc/httpd/conf.d
-# chown apache:apache /etc/httpd/conf.d/phpmyadmin.conf
+cp $ETC_DIR/phpmyadmin.conf /etc/httpd/conf.d
+chown apache:apache /etc/httpd/conf.d/phpmyadmin.conf
+#
+# Set up http users
+#
 
