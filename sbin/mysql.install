@@ -30,6 +30,13 @@
 yum install -y mysql
 yum install -y mysqld
 yum install -y mysql-server
+#
+# Install php
+#
+yum install -y php
+yum install -y php-mbstring
+yum install -y php-gd
+yum install -y php-mysqli
 
 #
 # Make sure it's running
