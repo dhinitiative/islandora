@@ -37,27 +37,34 @@ yum install -y php
 yum install -y php-mbstring
 yum install -y php-gd
 yum install -y php-mysqli
-
 #
-# Make sure it's running
+# Make sure it's running at boot
 #
-service mysqld start
 chkconfig mysqld on
-
 #
 # configure mysql
 #
 ## Change root account
 #
-/usr/bin/mysqladmin -u root -h $DB_SERVER password '$ROOT_MYSQL_PASS'
+#/usr/bin/mysqladmin -u root -h $DB_SERVER password '$ROOT_MYSQL_PASS'
+echo "UPDATE mysql.user SET Password=PASSWORD('$ROOT_MYSQL_PASS') WHERE User='root';" > /tmp/mysql_init
+echo "FLUSH PRIVILEGES;" >> /tmp/mysql_init
+/usr/bin/mysqld_safe --init-file=/tmp/mysql_init &
+sleep 20
+service mysqld stop
+rm -f /tmp/mysql_init
+#
+# Make sure it's running
+#
+service mysqld start
 #
 ## Create Drupal DB and User
 #
-mysql -u root -p$ROOT_MYSQL_PASS -e "create database $DRUPAL_DB_NAME; GRANT ALL PRIVILEGES ON $DRUPAL_DB_NAME.* TO $DRUPAL_DB_USER@localhost IDENTIFIED BY '$DRUPAL_DB_PASS'"
+#mysql -u root -p$ROOT_MYSQL_PASS -e "create database $DRUPAL_DB_NAME; GRANT ALL PRIVILEGES ON $DRUPAL_DB_NAME.* TO $DRUPAL_DB_USER@localhost IDENTIFIED BY '$DRUPAL_DB_PASS'"
 #
 ## Create Fedora DB and user
 #
-mysql -u root -p$ROOT_MYSQL_PASS -e "create database $FEDORA_DB_NAME; GRANT ALL PRIVILEGES ON $FEDORA_DB_NAME.* TO $FEDORA_DB_USER@localhost IDENTIFIED BY '$FEDORA_DB_PASS'"
+#mysql -u root -p$ROOT_MYSQL_PASS -e "create database $FEDORA_DB_NAME; GRANT ALL PRIVILEGES ON $FEDORA_DB_NAME.* TO $FEDORA_DB_USER@localhost IDENTIFIED BY '$FEDORA_DB_PASS'"
 
 
 #
