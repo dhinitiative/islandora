@@ -32,6 +32,12 @@
 # Variables for script
 #
 install_properties_file="install.properties-fedora"
+
+#
+## Create Fedora DB and user
+#
+mysql -u root -p$ROOT_MYSQL_PASS -e "create database $FEDORA_DB_NAME; GRANT ALL PRIVILEGES ON $FEDORA_DB_NAME.* TO $FEDORA_DB_USER@localhost IDENTIFIED BY '$FEDORA_DB_PASS'"
+
 #
 # Install Fedora Commons
 #
