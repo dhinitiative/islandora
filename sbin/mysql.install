@@ -57,6 +57,8 @@ rm -f /tmp/mysql_init
 # Make sure it's running
 #
 service mysqld start
+
+# Moved the following two database creation commands into the drupal.install and fedora.install scripts. 
 #
 ## Create Drupal DB and User
 #
