@@ -61,15 +61,11 @@ rm -f /tmp/mysql_init
 #
 service mysqld start
 
-# Moved the following two database creation commands into the drupal.install and fedora.install scripts. 
 #
-## Create Drupal DB and User
+# Remind to execute /usr/bin/mysql_secure_installation
 #
-#mysql -u root -p$ROOT_MYSQL_PASS -e "create database $DRUPAL_DB_NAME; GRANT ALL PRIVILEGES ON $DRUPAL_DB_NAME.* TO $DRUPAL_DB_USER@localhost IDENTIFIED BY '$DRUPAL_DB_PASS'"
-#
-## Create Fedora DB and user
-#
-#mysql -u root -p$ROOT_MYSQL_PASS -e "create database $FEDORA_DB_NAME; GRANT ALL PRIVILEGES ON $FEDORA_DB_NAME.* TO $FEDORA_DB_USER@localhost IDENTIFIED BY '$FEDORA_DB_PASS'"
+echo "Please run /usr/bin/mysql_secure_installation" > /etc/motd
+echo "and then remove this reminder from /etc/motd" >> /etc/motd
 
 
 #
