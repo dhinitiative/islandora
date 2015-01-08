@@ -55,7 +55,7 @@ echo "FLUSH PRIVILEGES;" >> /tmp/mysql_init
 /usr/bin/mysqld_safe --init-file=/tmp/mysql_init &
 sleep 20
 service mysqld stop
-#rm -f /tmp/mysql_init
+rm -f /tmp/mysql_init
 #
 # Make sure it's running
 #
