@@ -27,6 +27,11 @@
 . ../etc/database.sh
 
 #
+## Create Drupal DB and User
+#
+mysql -u root -p$ROOT_MYSQL_PASS -e "create database $DRUPAL_DB_NAME; GRANT ALL PRIVILEGES ON $DRUPAL_DB_NAME.* TO $DRUPAL_DB_USER@localhost IDENTIFIED BY '$DRUPAL_DB_PASS'"
+
+#
 # Install Drupal
 #
 #wget -N -P $SRC_DIR http://ftp.drupal.org/files/projects/drupal-7.26.tar.gz
