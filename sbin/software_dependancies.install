@@ -64,6 +64,7 @@ usermod -G fedora apache
 #
 #chmod 775 $INSTALL_PREFIX # change below to this but need to have INSTALL_PREFIX in env.sh first
 chmod 775 /opt
+chown -R $FEDORA_USER:$FEDORA_USER $INSTALL_PREFIX/islandora
 #
 # End of Operating System Software Setup
 #=======================================================
