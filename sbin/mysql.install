@@ -69,20 +69,6 @@ echo "and then remove this reminder from /etc/motd" >> /etc/motd
 
 
 #
-# Install phpmyadmin
-#
-#cd $SRC_DIR
-#wget http://downloads.sourceforge.net/project/phpmyadmin/phpMyAdmin/4.1.8/phpMyAdmin-4.1.8-english.tar.gz
-#tar -zxvf phpMyAdmin-4.1.8-english.tar.gz
-#mv phpMyAdmin-4.1.8-english phpMyAdmin
-#mv phpMyAdmin /var/www/html
-#chown -R apache:apache /var/www/html
-#
-# Copy in phpMyAdmin config. 
-#
-#cp $ETC_DIR/phpmyadmin.conf /etc/httpd/conf.d
-#chown apache:apache /etc/httpd/conf.d/phpmyadmin.conf
-#
 # Install EPEL phpMyAdmin via yum
 #
 yum install -y phpMyAdmin
