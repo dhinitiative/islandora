@@ -83,6 +83,7 @@ sed -i "s/name\=\"indexDCFields\" value\=\"true\"/name\=\"indexDCFields\" value\
 # Update datastore structure in $FEDORA_HOME/server/config/spring/akubra-llstore.xml
 #
 # change  <constructor-arg value="##" /> to <constructor-arg value=“##/##” /> for fsObjectStoreMapper and fsDatastreamStoreMapper
+sed -i "s/constructor-arg value\=\"\#\#\"/constructor-arg value\=\"\#\#\/\#\#\"/g" $FEDORA_HOME/server/config/spring/akubra-llstore.xml
 
 #
 # set permissions
