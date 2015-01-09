@@ -69,13 +69,16 @@ ${JAVA_HOME}/bin/java -jar fcrepo-installer-3.5.jar $install_properties_file
 # Edit fedora describe page
 #
 # sed -i "s/<param name="fedoraServerHost" value="localhost">/<param name="fedoraServerHost" value="$SERVER_FULL_NAME">/g" $FEDORA_HOME/server/config/fedora.fcfg
+sed -i "s/value\=\"localhost\"/value\=\"$SERVER_FULL_NAME\"/g" $FEDORA_HOME/server/config/fedora.fcfg
 # sed -i "s/<param name="gSearchRESTURL" value="http://localhost:8080/fedoragsearch/rest">/<param name="gSearchRESTURL" value="http://$SERVER_FULL_NAME:8080/fedoragsearch/rest">/g" $FEDORA_HOME/server/config/fedora.fcfg
 # sed -i "s/<param name="pidNamespace" value="changeme">/<param name="pidNamespace" value="changeme">/g" $FEDORA_HOME/server/config/fedora.fcfg
 # sed -i "s/<param name="adminEmailList" value="bob@example.org sally@example.org">/<param name="adminEmailList" value="$ADMIN_EMAIL">/g" $FEDORA_HOME/server/config/fedora.fcfg
+sed -i "s/name\=\"adminEmailList\" value\=\"bob\@example\.org sally\@example\.org\"/name\=\"adminEmailList\" value\=\"$ADMIN_EMAIL\"/g" $FEDORA_HOME/server/config/fedora.fcfg 
 # sed -i "s/<param name="repositoryName" value="Fedora Repository">/<param name="repositoryName" value="Fedora Repository">/g" $FEDORA_HOME/server/config/fedora.fcfg
-# sed -i "s/ <param name="httpClientMaxConnectionsPerHost" value="5">/ <param name="httpClientMaxConnectionsPerHost" value="25">/g" $FEDORA_HOME/server/config/fedora.fcfg
+# sed -i "s/<param name="httpClientMaxConnectionsPerHost" value="5">/ <param name="httpClientMaxConnectionsPerHost" value="25">/g" $FEDORA_HOME/server/config/fedora.fcfg
+sed -i "s/name\=\"httpClientMaxConnectionsPerHost\" value\=\"5\"/name\=\"httpClientMaxConnectionsPerHost\" value\=\"25\"/g" $FEDORA_HOME/server/config/fedora.fcfg
 # sed -i "s/<param name="indexDCFields" value="true">/<param name="indexDCFields" value="false">/g" $FEDORA_HOME/server/config/fedora.fcfg
-
+sed -i "s/name\=\"indexDCFields\" value\=\"true\"/name\=\"indexDCFields\" value\=\"false\"/g" $FEDORA_HOME/server/config/fedora.fcfg
 # 
 # Update datastore structure in $FEDORA_HOME/server/config/spring/akubra-llstore.xml
 #
