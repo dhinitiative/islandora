@@ -71,28 +71,28 @@ git clone https://github.com/Islandora/tuque.git
 git clone https://github.com/thatcher/openseadragon.git
 git clone git://github.com/openlibrary/bookreader.git
 #
-# get drupal_filter
+# get drupal_filter (not needed moved to fedora.install script)
 #
 # deploy from github at https://github.com/Islandora/islandora_drupal_filter.git
 # wget --no-check-certificate "https://github.com/Islandora/islandora_drupal_filter/raw/release/bin/fcrepo-drupalauthfilter-3.4.2.jar"
-wget -N -P $SRC_DIR http://islandora.ca/sites/default/files/12.1.0/drupal_filter.tar.gz
-cd $SRC_DIR
-tar -zxvf drupal_filter.tar.gz
-mv bin drupal_filter
+#wget -N -P $SRC_DIR http://islandora.ca/sites/default/files/12.1.0/drupal_filter.tar.gz
+#cd $SRC_DIR
+#tar -zxvf drupal_filter.tar.gz
+# mv bin drupal_filter
 #
-# add drupal filter
+# add drupal filter (not needed moved to fedora.install script)
 #
 # for 3.6.2 jar do this
 #cd $CATALINA_HOME/webapps/fedora/WEB-INF/lib
 #wget --no-check-certificate https://github.com/Islandora/islandora_tomcat/raw/3.6.2/webapps/fedora/WEB-INF/lib/fcrepo-drupalauthfilter-3.6.2.jar
 #
-cp drupal_filter/fcrepo-drupalauthfilter-3.4.2.jar ${FEDORA_HOME}/tomcat/webapps/fedora/WEB-INF/lib/
+#cp drupal_filter/fcrepo-drupalauthfilter-3.4.2.jar ${FEDORA_HOME}/tomcat/webapps/fedora/WEB-INF/lib/
 
 #
-# set up jaas.conf 
+# set up jaas.conf (not needed moved to fedora.install script)
 #
-mv ${FEDORA_HOME}/server/config/jaas.conf ${FEDORA_HOME}/server/config/jaas.conf-orig
-cp drupal_filter/jaas.conf ${FEDORA_HOME}/server/config/jaas.conf
+#mv ${FEDORA_HOME}/server/config/jaas.conf ${FEDORA_HOME}/server/config/jaas.conf-orig
+#cp drupal_filter/jaas.conf ${FEDORA_HOME}/server/config/jaas.conf
 
 #
 # install filter config
@@ -106,10 +106,10 @@ sed -i "s/DRUPAL_DB_PREFIX_TO_CHANGE/$DRUPAL_DB_PREFIX/g" $SRC_DIR/filter-drupal
 cp $SRC_DIR/filter-drupal.xml ${FEDORA_HOME}/server/config/filter-drupal.xml
 
 #
-# Change XACML policies
+# Change XACML policies (not needed moved to fedora.install script)
 #
-rm ${FEDORA_HOME}/data/fedora-xacml-policies/repository-policies/default/deny-purge-*
-mkdir ${FEDORA_HOME}/data/fedora-xacml-policies/repository-policies/islandora
+#rm ${FEDORA_HOME}/data/fedora-xacml-policies/repository-policies/default/deny-purge-*
+#mkdir ${FEDORA_HOME}/data/fedora-xacml-policies/repository-policies/islandora
 
 #
 # Copy islandora policies
