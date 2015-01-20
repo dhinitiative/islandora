@@ -113,11 +113,11 @@ cp drupal_filter/jaas.conf ${FEDORA_HOME}/server/config/jaas.conf
 # install filter config
 #
 cp ../etc/filter-drupal.xml $SRC_DIR/filter-drupal.xml
-sed -i "s/DATABASE_SERVER_TO_CHANGE/$DB_SERVER/g" $SRC_DIR/filter-drupal.xml
-sed -i "s/DRUPAL_DB_NAME_TO_CHANGE/$DRUPAL_DB_NAME/g" $SRC_DIR/filter-drupal.xml
-sed -i "s/DRUPAL_DB_PASSWORD_TO_CHANGE/$DRUPAL_DB_PASS/g" $SRC_DIR/filter-drupal.xml
-sed -i "s/DRUPAL_DB_USER_TO_CHANGE/$DRUPAL_DB_USER/g" $SRC_DIR/filter-drupal.xml
-sed -i "s/DRUPAL_DB_PREFIX_TO_CHANGE/$DRUPAL_DB_PREFIX/g" $SRC_DIR/filter-drupal.xml
+#sed -i "s/DATABASE_SERVER_TO_CHANGE/$DB_SERVER/g" $SRC_DIR/filter-drupal.xml
+#sed -i "s/DRUPAL_DB_NAME_TO_CHANGE/$DRUPAL_DB_NAME/g" $SRC_DIR/filter-drupal.xml
+#sed -i "s/DRUPAL_DB_PASSWORD_TO_CHANGE/$DRUPAL_DB_PASS/g" $SRC_DIR/filter-drupal.xml
+#sed -i "s/DRUPAL_DB_USER_TO_CHANGE/$DRUPAL_DB_USER/g" $SRC_DIR/filter-drupal.xml
+#sed -i "s/DRUPAL_DB_PREFIX_TO_CHANGE/$DRUPAL_DB_PREFIX/g" $SRC_DIR/filter-drupal.xml
 cp $SRC_DIR/filter-drupal.xml ${FEDORA_HOME}/server/config/filter-drupal.xml
 
 #
