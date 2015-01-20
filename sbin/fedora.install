@@ -124,7 +124,6 @@ cp $SRC_DIR/filter-drupal.xml ${FEDORA_HOME}/server/config/filter-drupal.xml
 # Change XACML policies
 #
 rm ${FEDORA_HOME}/data/fedora-xacml-policies/repository-policies/default/deny-purge-*
-mkdir ${FEDORA_HOME}/data/fedora-xacml-policies/repository-policies/islandora
 
 #
 # Copy islandora policies
@@ -152,7 +151,24 @@ chkconfig fedora on
 #$CATALINA_HOME/bin/startup.sh
 service fedora start
 sleep 10
+service fedora stop
 #
-# Now stop fedora
+# Change XACML policies
 #
-#pkill java
+rm ${FEDORA_HOME}/data/fedora-xacml-policies/repository-policies/default/deny-purge-*
+
+#
+# Copy islandora policies
+#
+# cp $WEB_ROOT/sites/all/modules/islandora-7.x-1.2/policies/permit-* ${FEDORA_HOME}/data/fedora-xacml-policies/repository-policies/islandora
+cd ${FEDORA_HOME}/data/fedora-xacml-policies/repository-policies
+git clone https://github.com/Islandora/islandora-xacml-policies.git
+
+#
+# set permissions
+# 
+chown -R $FEDORA_USER:$FEDORA_USER $FEDORA_HOME
+#
+# Start fedora 
+#
+service fedora start
