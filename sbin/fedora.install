@@ -86,6 +86,53 @@ sed -i "s/name\=\"indexDCFields\" value\=\"true\"/name\=\"indexDCFields\" value\
 sed -i "s/constructor-arg value\=\"\#\#\"/constructor-arg value\=\"\#\#\/\#\#\"/g" $FEDORA_HOME/server/config/spring/akubra-llstore.xml
 
 #
+# get drupal_filter
+#
+# deploy from github at https://github.com/Islandora/islandora_drupal_filter.git
+# wget --no-check-certificate "https://github.com/Islandora/islandora_drupal_filter/raw/release/bin/fcrepo-drupalauthfilter-3.4.2.jar"
+wget -N -P $SRC_DIR http://islandora.ca/sites/default/files/12.1.0/drupal_filter.tar.gz
+cd $SRC_DIR
+tar -zxvf drupal_filter.tar.gz
+mv bin drupal_filter
+#
+# add drupal filter
+#
+# for 3.6.2 jar do this
+#cd $CATALINA_HOME/webapps/fedora/WEB-INF/lib
+#wget --no-check-certificate https://github.com/Islandora/islandora_tomcat/raw/3.6.2/webapps/fedora/WEB-INF/lib/fcrepo-drupalauthfilter-3.6.2.jar
+#
+cp drupal_filter/fcrepo-drupalauthfilter-3.4.2.jar ${FEDORA_HOME}/tomcat/webapps/fedora/WEB-INF/lib/
+
+#
+# set up jaas.conf 
+#
+mv ${FEDORA_HOME}/server/config/jaas.conf ${FEDORA_HOME}/server/config/jaas.conf-orig
+cp drupal_filter/jaas.conf ${FEDORA_HOME}/server/config/jaas.conf
+
+#
+# install filter config
+#
+cp ../etc/filter-drupal.xml $SRC_DIR/filter-drupal.xml
+sed -i "s/DATABASE_SERVER_TO_CHANGE/$DB_SERVER/g" $SRC_DIR/filter-drupal.xml
+sed -i "s/DRUPAL_DB_NAME_TO_CHANGE/$DRUPAL_DB_NAME/g" $SRC_DIR/filter-drupal.xml
+sed -i "s/DRUPAL_DB_PASSWORD_TO_CHANGE/$DRUPAL_DB_PASS/g" $SRC_DIR/filter-drupal.xml
+sed -i "s/DRUPAL_DB_USER_TO_CHANGE/$DRUPAL_DB_USER/g" $SRC_DIR/filter-drupal.xml
+sed -i "s/DRUPAL_DB_PREFIX_TO_CHANGE/$DRUPAL_DB_PREFIX/g" $SRC_DIR/filter-drupal.xml
+cp $SRC_DIR/filter-drupal.xml ${FEDORA_HOME}/server/config/filter-drupal.xml
+
+#
+# Change XACML policies
+#
+rm ${FEDORA_HOME}/data/fedora-xacml-policies/repository-policies/default/deny-purge-*
+mkdir ${FEDORA_HOME}/data/fedora-xacml-policies/repository-policies/islandora
+
+#
+# Copy islandora policies
+#
+# cp $WEB_ROOT/sites/all/modules/islandora-7.x-1.2/policies/permit-* ${FEDORA_HOME}/data/fedora-xacml-policies/repository-policies/islandora
+
+
+#
 # set permissions
 # 
 chown -R $FEDORA_USER:$FEDORA_USER $FEDORA_HOME
