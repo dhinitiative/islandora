@@ -25,6 +25,7 @@
 ## Set the permissions on the whole installation
 #
 
+## Note: should put this in a loop and check if the directory exists first
 # set ownership
 chown -R ${FEDORA_USER}:${FEDORA_USER} ${ISLANDORA_HOME}
 chown -R ${FEDORA_USER}:${FEDORA_USER} ${FEDORA_HOME}
