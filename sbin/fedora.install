@@ -145,7 +145,8 @@ cp $SRC_DIR/filter-drupal.xml ${FEDORA_HOME}/server/config/filter-drupal.xml
 #
 # Change XACML policies
 #
-rm ${FEDORA_HOME}/data/fedora-xacml-policies/repository-policies/default/deny-purge-*
+rm -f ${FEDORA_HOME}/data/fedora-xacml-policies/repository-policies/default/deny-purge-*
+rm -f ${FEDORA_HOME}/data/fedora-xacml-policies/repository-policies/default/deny-apim-if-not-localhost.xml
 
 #
 # Copy islandora policies
