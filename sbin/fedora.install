@@ -158,17 +158,6 @@ git clone https://github.com/Islandora/islandora-xacml-policies.git
 # set permissions
 # 
 chown -R $FEDORA_USER:$FEDORA_USER $FEDORA_HOME
-#
-# Change XACML policies
-#
-rm ${FEDORA_HOME}/data/fedora-xacml-policies/repository-policies/default/deny-purge-*
-
-#
-# Copy islandora policies
-#
-# cp $WEB_ROOT/sites/all/modules/islandora-7.x-1.2/policies/permit-* ${FEDORA_HOME}/data/fedora-xacml-policies/repository-policies/islandora
-cd ${FEDORA_HOME}/data/fedora-xacml-policies/repository-policies
-git clone https://github.com/Islandora/islandora-xacml-policies.git
 
 #
 # set permissions
