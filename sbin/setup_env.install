@@ -22,7 +22,7 @@
 # Get the hamhpc/islandora Git Repo
 #
 cd /opt
-git clone git://github.com/hamhpc/islandora.git
+git clone git://github.com/dhinitiative/islandora.git
 
 #
 # Variables
