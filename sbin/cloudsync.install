@@ -24,25 +24,26 @@
 #
 # install Cloudsync 1.0
 #
-#cd $SRC_DIR
-#wget -N -P $SRC_DIR http://repo1.maven.org/maven2/org/duraspace/fcrepo-cloudsync/fcrepo-cloudsync-service/1.1.0/fcrepo-cloudsync-service-1.1.0.war
-#chown -R $FEDORA_USER:$FEDORA_USER fcrepo-cloudsync-service-1.1.0.war
-#mkdir $INSTALL_PREFIX/cloudsync
-#chown -R $FEDORA_USER:$FEDORA_USER $INSTALL_PREFIX/cloudsync
-#cp fcrepo-cloudsync-service-1.1.0.war ${FEDORA_HOME}/tomcat/webapps
-#sleep 10   # wait for war to load in fedora
-#echo "cloudsync.home = $INSTALL_PREFIX/cloudsync" >> $CATALINA_HOME/webapps/fcrepo-cloudsync-service-1.1.0/WEB-INF/classes/cloudsync.properties
+cd $SRC_DIR
+wget -N -P $SRC_DIR http://repo1.maven.org/maven2/org/duraspace/fcrepo-cloudsync/fcrepo-cloudsync-service/1.1.0/fcrepo-cloudsync-service-1.1.0.war
+chown -R $FEDORA_USER:$FEDORA_USER fcrepo-cloudsync-service-1.1.0.war
+mv fcrepo-cloudsync-service-1.1.0.war cloudsync.war
+mkdir $INSTALL_PREFIX/cloudsync
+chown -R $FEDORA_USER:$FEDORA_USER $INSTALL_PREFIX/cloudsync
+mv cloudsync.war ${FEDORA_HOME}/tomcat/webapps
+sleep 10   # wait for war to load in fedora
+echo "cloudsync.home = $INSTALL_PREFIX/cloudsync" >> $CATALINA_HOME/webapps/cloudsync/WEB-INF/classes/cloudsync.properties
 
 #
-# Install Sync Tool 3.2.1
+# Install Duracloud Sync Tool 3.2.1
 #
-cd $SRC_DIR
-wget -N -P $SRC_DIR http://docs.duraspace.org/duracloud/3.2.1/downloads/duracloudsync-3.2.1.jar
-chown -R $FEDORA_USER:$FEDORA_USER duracloudsync-3.2.1.jar
-mkdir -p /opt/duracloud/bin
-mv duracloudsync-3.2.1.jar /opt/duracloud/bin/
-echo "#!/bin/bash" > /etc/cron.daily/cloud-sync
-echo "" >> /etc/cron.daily/cloud-sync
-echo "java -jar /opt/duracloud/bin/duracloudsync-3.2.1.jar -x -c <DIR_TO_BACKUP> -h <HOST.duracloud.org> -s <SOURCE-DIR> -u <USER> -p <PASSWORD> >> ${FEDORA_HOME}/server/logs/synctool-output.log 2>&1" >> /etc/cron.daily/cloud-sync
-echo "" >> /etc/motd
-echo "Also update daily cron with credentials for the CloudSync Tool (/etc/cron.daily/cloud-sync)." >> /etc/motd
+#cd $SRC_DIR
+#wget -N -P $SRC_DIR http://docs.duraspace.org/duracloud/3.2.1/downloads/duracloudsync-3.2.1.jar
+#chown -R $FEDORA_USER:$FEDORA_USER duracloudsync-3.2.1.jar
+#mkdir -p /opt/duracloud/bin
+#mv duracloudsync-3.2.1.jar /opt/duracloud/bin/
+#echo "#!/bin/bash" > /etc/cron.daily/cloud-sync
+#echo "" >> /etc/cron.daily/cloud-sync
+#echo "java -jar /opt/duracloud/bin/duracloudsync-3.2.1.jar -x -c <DIR_TO_BACKUP> -h <HOST.duracloud.org> -s <SOURCE-DIR> -u <USER> -p <PASSWORD> >> ${FEDORA_HOME}/server/logs/synctool-output.log 2>&1" >> /etc/cron.daily/cloud-sync
+#echo "" >> /etc/motd
+#echo "Also update daily cron with credentials for the CloudSync Tool (/etc/cron.daily/cloud-sync)." >> /etc/motd
