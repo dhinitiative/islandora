@@ -22,13 +22,23 @@
 . ../etc/database.sh
 
 #
-# install Cloudsync
+# install Cloudsync 1.0
+#
+#cd $SRC_DIR
+#wget -N -P $SRC_DIR http://repo1.maven.org/maven2/org/duraspace/fcrepo-cloudsync/fcrepo-cloudsync-service/1.1.0/fcrepo-cloudsync-service-1.1.0.war
+#chown -R $FEDORA_USER:$FEDORA_USER fcrepo-cloudsync-service-1.1.0.war
+#mkdir $INSTALL_PREFIX/cloudsync
+#chown -R $FEDORA_USER:$FEDORA_USER $INSTALL_PREFIX/cloudsync
+#cp fcrepo-cloudsync-service-1.1.0.war ${FEDORA_HOME}/tomcat/webapps
+#sleep 10   # wait for war to load in fedora
+#echo "cloudsync.home = $INSTALL_PREFIX/cloudsync" >> $CATALINA_HOME/webapps/fcrepo-cloudsync-service-1.1.0/WEB-INF/classes/cloudsync.properties
+
+#
+# Install Sync Tool 3.2.1
 #
 cd $SRC_DIR
-wget -N -P $SRC_DIR http://repo1.maven.org/maven2/org/duraspace/fcrepo-cloudsync/fcrepo-cloudsync-service/1.1.0/fcrepo-cloudsync-service-1.1.0.war
-chown -R $FEDORA_USER:$FEDORA_USER fcrepo-cloudsync-service-1.1.0.war
-mkdir $INSTALL_PREFIX/cloudsync
-chown -R $FEDORA_USER:$FEDORA_USER $INSTALL_PREFIX/cloudsync
-cp fcrepo-cloudsync-service-1.1.0.war ${FEDORA_HOME}/tomcat/webapps
-sleep 10   # wait for war to load in fedora
-echo "cloudsync.home = $INSTALL_PREFIX/cloudsync" >> $CATALINA_HOME/webapps/fcrepo-cloudsync-service-1.1.0/WEB-INF/classes/cloudsync.properties
+wget -N -P $SRC_DIR http://docs.duraspace.org/duracloud/3.2.1/downloads/duracloudsync-3.2.1.jar
+chown -R $FEDORA_USER:$FEDORA_USER duracloudsync-3.2.1.jar
+mkdir -p /opt/duracloud/bin
+cp duracloudsync-3.2.1.jar /opt/duracloud/bin/
+echo "#!/bin/bash" > ${FEDORA_HOME}/bin/cloud-sync.sh
