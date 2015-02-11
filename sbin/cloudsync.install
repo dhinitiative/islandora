@@ -44,3 +44,5 @@ mv duracloudsync-3.2.1.jar /opt/duracloud/bin/
 echo "#!/bin/bash" > /etc/cron.daily/cloud-sync
 echo "" >> /etc/cron.daily/cloud-sync
 echo "java -jar /opt/duracloud/bin/duracloudsync-3.2.1.jar -x -c <DIR_TO_BACKUP> -h <HOST.duracloud.org> -s <SOURCE-DIR> -u <USER> -p <PASSWORD> >> ${FEDORA_HOME}/server/logs/synctool-output.log 2>&1" >> /etc/cron.daily/cloud-sync
+echo "" >> /etc/motd
+echo "Also update daily cron with credentials for the CloudSync Tool (/etc/cron.daily/cloud-sync)." >> /etc/motd
