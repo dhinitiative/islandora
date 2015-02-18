@@ -29,7 +29,7 @@
 . ../etc/database.sh
 
 #
-# install fedora gsearch
+# install fedora gsearch 2.4.2
 #
 wget -N -P $SRC_DIR  http://downloads.sourceforge.net/fedora-commons/fedoragsearch-2.4.2.zip
 cd $SRC_DIR
@@ -37,6 +37,17 @@ unzip fedoragsearch-2.4.2.zip
 chown -R $FEDORA_USER:$FEDORA_USER fedoragsearch-2.4.2
 cp fedoragsearch-2.4.2/fedoragsearch.war ${FEDORA_HOME}/tomcat/webapps/
 sleep 60   # wait for war file to load in tomcat
+
+#
+# install fedora gsearch 2.6
+#
+#wget -N -P $SRC_DIR  http://downloads.sourceforge.net/fedora-commons/fedoragsearch-2.6.zip
+#cd $SRC_DIR
+#unzip fedoragsearch-2.6.zip
+#chown -R $FEDORA_USER:$FEDORA_USER fedoragsearch-2.6
+#cp fedoragsearch-2.6/fedoragsearch.war ${FEDORA_HOME}/tomcat/webapps/
+#sleep 60   # wait for war file to load in tomcat
+
 #
 # Install Gsearch user
 #
