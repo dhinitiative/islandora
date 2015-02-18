@@ -157,6 +157,11 @@ cd ${FEDORA_HOME}/data/fedora-xacml-policies/repository-policies
 git clone https://github.com/Islandora/islandora-xacml-policies.git
 
 #
+# Remove tomcat examples for security
+#
+rm -rf ${CATALINA_HOME}/webapps/examples
+
+#
 # set permissions
 # 
 chown -R $FEDORA_USER:$FEDORA_USER $FEDORA_HOME
