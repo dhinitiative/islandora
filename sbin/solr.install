@@ -29,7 +29,7 @@
 . ../etc/database.sh
 
 #
-# install Solr
+# install Solr 3.6.2
 #
 cd $SRC_DIR
 wget -N -P $SRC_DIR http://archive.apache.org/dist/lucene/solr/3.6.2/apache-solr-3.6.2.tgz
@@ -38,9 +38,25 @@ chown -R $FEDORA_USER:$FEDORA_USER apache-solr-3.6.2
 cp apache-solr-3.6.2/example/webapps/solr.war ${FEDORA_HOME}/tomcat/webapps
 cp -r apache-solr-3.6.2/example/solr $SOLR_HOME
 sleep 60   # wait for war to load in fedora
+#
+# install Solr 4.2.0
+#
+#cd $SRC_DIR
+#wget -N -P $SRC_DIR https://archive.apache.org/dist/lucene/solr/4.2.0/solr-4.2.0.tgz
+#tar -zxvf solr-4.2.0.tgz
+#chown -R $FEDORA_USER:$FEDORA_USER solr-4.2.0
+#cp solr-4.2.0/example/webapps/solr.war ${FEDORA_HOME}/tomcat/webapps
+#cp -r solr-4.2.0/example/solr $SOLR_HOME
+#sleep 60   # wait for war to load in fedora
+
+#
+# install web.xml
+#
 mv ${FEDORA_HOME}/tomcat/webapps/solr/WEB-INF/web.xml ${FEDORA_HOME}/tomcat/webapps/solr/WEB-INF/web.xml-orig
 chown $FEDORA_USER:$FEDORA_USER ../etc/solr-web.xml
 cp ../etc/solr-web.xml ${FEDORA_HOME}/tomcat/webapps/solr/WEB-INF/web.xml
+
+
 #
 # setup solr schema
 #
