@@ -44,6 +44,7 @@ mv ${FEDORA_HOME}/server/config/fedora-users.xml ${FEDORA_HOME}/server/config/fe
 # modify the values to reflect this installation with sed
 sed -i s/FEDORA_ADMIN_USER_TO_CHANGE/$FEDORA_ADMIN_USER/g ../etc/fedora-users.xml
 sed -i s/FEDORA_ADMIN_PASSWORD_TO_CHANGE/$FEDORA_ADMIN_PASS/g ../etc/fedora-users.xml
+sed -i s/changeme/$FEDORA_ADMIN_PASS/g ../etc/fedora-users.xml
 sed -i s/FEDORA_GSEARCH_ADMIN_USER_TO_CHANGE/$FEDORA_GSEARCH_ADMIN_USER/g ../etc/fedora-users.xml
 sed -i s/FEDORA_GSEARCH_ADMIN_PASS_TO_CHANGE/$FEDORA_GSEARCH_ADMIN_PASS/g ../etc/fedora-users.xml
 # install config file
