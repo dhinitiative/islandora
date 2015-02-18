@@ -79,6 +79,7 @@ sed -i "s/name\=\"adminEmailList\" value\=\"bob\@example\.org sally\@example\.or
 sed -i "s/name\=\"httpClientMaxConnectionsPerHost\" value\=\"5\"/name\=\"httpClientMaxConnectionsPerHost\" value\=\"25\"/g" $FEDORA_HOME/server/config/fedora.fcfg
 # sed -i "s/<param name="indexDCFields" value="true">/<param name="indexDCFields" value="false">/g" $FEDORA_HOME/server/config/fedora.fcfg
 sed -i "s/name\=\"indexDCFields\" value\=\"true\"/name\=\"indexDCFields\" value\=\"false\"/g" $FEDORA_HOME/server/config/fedora.fcfg
+sed -i "s/autoChecksum\" value=\"false/autoChecksum\" value=\"true/g" $FEDORA_HOME/server/config/fedora.fcfg
 # 
 # Update datastore structure in $FEDORA_HOME/server/config/spring/akubra-llstore.xml
 #
