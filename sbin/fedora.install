@@ -32,7 +32,11 @@
 # Variables for script
 #
 install_properties_file="install.properties-fedora"
-
+#
+# If this is a rerun of this script on an already installed machine then
+# Drop DB first or you'll have problems with drupal-filter. 
+#
+#mysqladmin -f -h $DB_SERVER -u $FEDORA_DB_USER -p$FEDORA_DB_PASS drop $FEDORA_DB_NAME
 #
 ## Create Fedora DB and user
 #
@@ -56,10 +60,6 @@ sed -i "s/DATABASE_USER_TO_CHANGE/$FEDORA_DB_USER/g" $install_properties_file
 sed -i "s|CATALINA_HOME_TO_CHANGE|$CATALINA_HOME|g" $install_properties_file
 sed -i "s|FEDORA_HOME_TO_CHANGE|$FEDORA_HOME|g" $install_properties_file
 sed -i "s/FEDORA_ADMIN_PASS_TO_CHANGE/$FEDORA_ADMIN_PASS/g" $install_properties_file
-#
-# Drop DB first or you'll have problems with drupal-filter. 
-#
-#mysqladmin -f -h $DB_SERVER -u $FEDORA_DB_USER -p$FEDORA_DB_PASS drop $FEDORA_DB_NAME
 #
 ## Fresh fedora commons install
 #
