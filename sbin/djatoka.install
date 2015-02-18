@@ -34,6 +34,11 @@ cp $ISLANDORA_PKGS/adore-djatoka-1.1/dist/adore-djatoka.war $CATALINA_HOME/webap
 sleep 30 
 cp $ISLANDORA_PKGS/adore-djatoka-1.1/dist/adore-djatoka-1.1.jar ${FEDORA_HOME}/tomcat/webapps/adore-djatoka/WEB-INF/lib/
 #
+# update djatoka test page settings
+#
+# sed out localhost from $CATALINA_HOME/webapps/adore-djatoka/index.html to servername
+sed -i "s|localhost|$SERVER_FULL_NAME|g" $CATALINA_HOME/webapps/adore-djatoka/index.html
+#
 # link Djatoka binaries to /usr/bin
 # needed to do this in order to enable the module for Large Image Collection.
 # Then I in the module for the path I could change it to /opt/islandora/bin/kdu_compress
