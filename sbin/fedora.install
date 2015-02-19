@@ -42,28 +42,56 @@ install_properties_file="install.properties-fedora"
 #
 mysql -u root -p$ROOT_MYSQL_PASS -e "create database $FEDORA_DB_NAME; GRANT ALL PRIVILEGES ON $FEDORA_DB_NAME.* TO $FEDORA_DB_USER@localhost IDENTIFIED BY '$FEDORA_DB_PASS'"
 
-#
-# Install Fedora Commons
-#
-## get software
-wget -N -P $SRC_DIR http://downloads.sourceforge.net/fedora-commons/fcrepo-installer-3.5.jar
-cd $SRC_DIR
-#
-## create install.properties
-#
-cp ../etc/install.properties-fedora $install_properties_file
-sed -i "s/ENTER_DATE/`date`/" $install_properties_file
-sed -i "s/DATABASE_SERVER_TO_CHANGE/$DB_SERVER/g" $install_properties_file
-sed -i "s/DATABASE_NAME_TO_CHANGE/$FEDORA_DB_NAME/g" $install_properties_file
-sed -i "s/DATABASE_PASSWORD_TO_CHANGE/$FEDORA_DB_PASS/g" $install_properties_file
-sed -i "s/DATABASE_USER_TO_CHANGE/$FEDORA_DB_USER/g" $install_properties_file
-sed -i "s|CATALINA_HOME_TO_CHANGE|$CATALINA_HOME|g" $install_properties_file
-sed -i "s|FEDORA_HOME_TO_CHANGE|$FEDORA_HOME|g" $install_properties_file
-sed -i "s/FEDORA_ADMIN_PASS_TO_CHANGE/$FEDORA_ADMIN_PASS/g" $install_properties_file
-#
-## Fresh fedora commons install
-#
-${JAVA_HOME}/bin/java -jar fcrepo-installer-3.5.jar $install_properties_file
+if [ $FEDORA_VERSION == "3.5" ]; then
+  #
+  # Install Fedora Commons 3.5
+  #
+  ## get software
+  wget -N -P $SRC_DIR http://downloads.sourceforge.net/fedora-commons/fcrepo-installer-3.5.jar
+  cd $SRC_DIR
+  #
+  ## create install.properties
+  #
+  cp ../etc/install.properties-fedora $install_properties_file
+  sed -i "s/ENTER_DATE/`date`/" $install_properties_file
+  sed -i "s/DATABASE_SERVER_TO_CHANGE/$DB_SERVER/g" $install_properties_file
+  sed -i "s/DATABASE_NAME_TO_CHANGE/$FEDORA_DB_NAME/g" $install_properties_file
+  sed -i "s/DATABASE_PASSWORD_TO_CHANGE/$FEDORA_DB_PASS/g" $install_properties_file
+  sed -i "s/DATABASE_USER_TO_CHANGE/$FEDORA_DB_USER/g" $install_properties_file
+  sed -i "s|CATALINA_HOME_TO_CHANGE|$CATALINA_HOME|g" $install_properties_file
+  sed -i "s|FEDORA_HOME_TO_CHANGE|$FEDORA_HOME|g" $install_properties_file
+  sed -i "s/FEDORA_ADMIN_PASS_TO_CHANGE/$FEDORA_ADMIN_PASS/g" $install_properties_file
+  #
+  ## Fresh fedora commons install
+  #
+  ${JAVA_HOME}/bin/java -jar fcrepo-installer-3.5.jar $install_properties_file
+fi
+
+if [ $FEDORA_VERSION == "3.8" ]; then
+  #
+  # Install Fedora Commons 3.8
+  #
+  ## get software
+  wget -N -P $SRC_DIR http://downloads.sourceforge.net/fedora-commons/fcrepo-installer-3.8.jar
+  cd $SRC_DIR
+  #
+  ## create install.properties
+  #
+  cp ../etc/install.properties-fedora $install_properties_file
+  sed -i "s/ENTER_DATE/`date`/" $install_properties_file
+  sed -i "s/DATABASE_SERVER_TO_CHANGE/$DB_SERVER/g" $install_properties_file
+  sed -i "s/DATABASE_NAME_TO_CHANGE/$FEDORA_DB_NAME/g" $install_properties_file
+  sed -i "s/DATABASE_PASSWORD_TO_CHANGE/$FEDORA_DB_PASS/g" $install_properties_file
+  sed -i "s/DATABASE_USER_TO_CHANGE/$FEDORA_DB_USER/g" $install_properties_file
+  sed -i "s|CATALINA_HOME_TO_CHANGE|$CATALINA_HOME|g" $install_properties_file
+  sed -i "s|FEDORA_HOME_TO_CHANGE|$FEDORA_HOME|g" $install_properties_file
+  sed -i "s/FEDORA_ADMIN_PASS_TO_CHANGE/$FEDORA_ADMIN_PASS/g" $install_properties_file
+  #
+  ## Fresh fedora commons install
+  #
+  ${JAVA_HOME}/bin/java -jar fcrepo-installer-3.8.jar $install_properties_file
+fi
+
 
 #
 # Edit fedora describe page
