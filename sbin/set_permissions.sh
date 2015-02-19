@@ -34,9 +34,9 @@ if [ $INSTALL_DRUPAL == "Yes" ]; then
   chmod -R 755 $DRUPAL_ROOT
   chmod -R 775 $DRUPAL_ROOT/sites/default/files
 fi
-if [ $INSTALL_SOLR == "Yes" ]; then
+#if [ $INSTALL_SOLR == "Yes" ]; then
   chown -R ${FEDORA_USER}:${FEDORA_USER} ${SOLR_HOME}
-fi
+#fi
 chmod -R 755 ${ISLANDORA_HOME} 
 #chmod -R 755 ${FEDORA_HOME} 
 chmod 755 /etc/init.d/fedora
