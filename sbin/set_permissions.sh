@@ -26,18 +26,21 @@
 #
 
 ## Note: should put this in a loop and check if the directory exists first
-# set ownership
+# set ownership and permissions
 chown -R ${FEDORA_USER}:${FEDORA_USER} ${ISLANDORA_HOME}
 chown -R ${FEDORA_USER}:${FEDORA_USER} ${FEDORA_HOME}
-chown -R ${FEDORA_USER}:${FEDORA_USER} ${DRUPAL_ROOT}
-chown -R ${FEDORA_USER}:${FEDORA_USER} ${SOLR_HOME}
-
-# set permissions
+if [ $INSTALL_DRUPAL == "Yes" ]; then
+  chown -R ${FEDORA_USER}:${FEDORA_USER} ${DRUPAL_ROOT}
+  chmod -R 755 $DRUPAL_ROOT
+  chmod -R 775 $DRUPAL_ROOT/sites/default/files
+fi
+if [ $INSTALL_SOLR == "Yes" ]; then
+  chown -R ${FEDORA_USER}:${FEDORA_USER} ${SOLR_HOME}
+fi
 chmod -R 755 ${ISLANDORA_HOME} 
 #chmod -R 755 ${FEDORA_HOME} 
 chmod 755 /etc/init.d/fedora
 chmod -R 640 ${ISLANDORA_HOME}/etc
 chmod 755 ${ISLANDORA_HOME}/etc
 chmod -R 644 ${ISLANDORA_HOME}/etc/env.sh
-chmod -R 755 $DRUPAL_ROOT
-chmod -R 775 $DRUPAL_ROOT/sites/default/files
+
