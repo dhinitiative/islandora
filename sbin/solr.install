@@ -64,14 +64,15 @@ cp ../etc/solr-web.xml ${FEDORA_HOME}/tomcat/webapps/solr/WEB-INF/web.xml
 #
 # setup solr schema
 #
-mv $SOLR_HOME/conf/schema.xml $SOLR_HOME/conf/schema.bak
 if [ $SOLR_VERSION == "3.6.2" ]; then
   if [ $GSEARCH_VERSION == "2.4.2" ]; then
+    mv $SOLR_HOME/conf/schema.xml $SOLR_HOME/conf/schema.bak
     cp ${FEDORA_HOME}/tomcat/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/conf/schema-3.6.0-for-fgs-2.4.2.xml $SOLR_HOME/conf/schema.xml
   
   else
      echo "GSEARCH 2.4.2 isn't installed."
   fi
+fi
 if [ $SOLR_VERSION == "4.2.0" ]; then
   if [ $GSEARCH_VERSION == "2.6" ]; then
     cp ${FEDORA_HOME}/tomcat/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/conf/schema-4.2.0-for-fgs-2.6.xml $SOLR_HOME/conf/schema.xml
