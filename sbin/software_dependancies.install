@@ -39,20 +39,23 @@ yum -y install unzip
 # Enable EPEL
 #
 rpm -ivh http://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
-#
-# Enable RPM Fusion Repo
-rpm -ivh http://download1.rpmfusion.org/free/el/updates/6/i386/rpmfusion-free-release-6-1.noarch.rpm
-#
-# Get RPM Fusion softwares
-#
-yum -y install ffmpeg
-yum -y install xpdf
-yum -y install lame
-#
-# ffmpeg2theora
-#
-wget -N -P ../src http://v2v.cc/~j/ffmpeg2theora/ffmpeg2theora-0.29.linux64.bin
-install -m 755 ../src/ffmpeg2theora-0.29.linux64.bin /usr/bin/ffmpeg2theora
+
+if [ $INSTALL_ISLANDORA == "Yes" ]; then
+	#
+	# Enable RPM Fusion Repo
+	rpm -ivh http://download1.rpmfusion.org/free/el/updates/6/i386/rpmfusion-free-release-6-1.noarch.rpm
+	#
+	# Get RPM Fusion softwares
+	#
+	yum -y install ffmpeg
+	yum -y install xpdf
+	yum -y install lame
+	#
+	# ffmpeg2theora
+	#
+	wget -N -P ../src http://v2v.cc/~j/ffmpeg2theora/ffmpeg2theora-0.29.linux64.bin
+	install -m 755 ../src/ffmpeg2theora-0.29.linux64.bin /usr/bin/ffmpeg2theora
+fi
 #
 # create fedora user account
 #
@@ -68,41 +71,44 @@ chown -R $FEDORA_USER:$FEDORA_USER $INSTALL_PREFIX/islandora
 #
 # End of Operating System Software Setup
 #=======================================================
-#
-# Needed for tesseract to find leptonica
-#
-export LIBLEPT_HEADERSDIR=/opt/islandora/packages/leptonica-1.69/include
 
-#
-# Install dependancy packages in islandora directory tree
-#
-# leptonica needs to install before tesseract (find doesn't present the files alphabetically where ls should)
-#for PKG in `find ../etc/packages -name "*.package" -print`
-for PKG in `ls ../etc/packages | grep .package`
-do
-	#. $PKG
-	. ../etc/packages/$PKG
-	wget -N -P $SRC_DIR $PACKAGE_URL
+if [ $INSTALL_ISLANDORA == "Yes" ]; then
+	#
+	# Needed for tesseract to find leptonica
+	#
+	export LIBLEPT_HEADERSDIR=/opt/islandora/packages/leptonica-1.69/include
+
+	#
+	# Install dependancy packages in islandora directory tree
+	#
+	# leptonica needs to install before tesseract (find doesn't present the files alphabetically where ls should)
+	#for PKG in `find ../etc/packages -name "*.package" -print`
+	for PKG in `ls ../etc/packages | grep .package`
+	do
+		#. $PKG
+		. ../etc/packages/$PKG
+		wget -N -P $SRC_DIR $PACKAGE_URL
+		cd $SRC_DIR
+		$PACKAGE_UNCOMPRESS $PACKAGE_TARFILE
+		cd $PACKAGE_DIR_UNCOMPRESSED
+		./configure --prefix=$ISLANDORA_PKGS/$PACKAGE_NAME-$PACKAGE_VERSION $EXTRA_CONFIGURE_ARGS
+		make
+		make install
+		cd $ISLANDORA_PKGS/$PACKAGE_NAME-$PACKAGE_VERSION
+		../../sbin/create_package_makefile.sh
+		make install
+		cd $SRC_DIR
+	done
+
+	# link fits.sh 
+	ln -s $ISLANDORA_HOME/packages/fits-0.6.2/fits.sh $ISLANDORA_HOME/bin/fits.sh
+
+	#
+	## Add in tesseract language pack
+	#
+	wget -N -P $SRC_DIR https://tesseract-ocr.googlecode.com/files/tesseract-ocr-3.02.eng.tar.gz
 	cd $SRC_DIR
-	$PACKAGE_UNCOMPRESS $PACKAGE_TARFILE
-	cd $PACKAGE_DIR_UNCOMPRESSED
-	./configure --prefix=$ISLANDORA_PKGS/$PACKAGE_NAME-$PACKAGE_VERSION $EXTRA_CONFIGURE_ARGS
-	make
-	make install
-	cd $ISLANDORA_PKGS/$PACKAGE_NAME-$PACKAGE_VERSION
-	../../sbin/create_package_makefile.sh
-	make install
-	cd $SRC_DIR
-done
-
-# link fits.sh 
-ln -s $ISLANDORA_HOME/packages/fits-0.6.2/fits.sh $ISLANDORA_HOME/bin/fits.sh
-
-#
-## Add in tesseract language pack
-#
-wget -N -P $SRC_DIR https://tesseract-ocr.googlecode.com/files/tesseract-ocr-3.02.eng.tar.gz
-cd $SRC_DIR
-tar -zxvf tesseract-ocr-3.02.eng.tar.gz
-cp -r tesseract-ocr/tessdata/eng.* $ISLANDORA_HOME/share/tessdata
-chown -R fedora:fedora /opt/islandora/share/tessdata/eng.*
+	tar -zxvf tesseract-ocr-3.02.eng.tar.gz
+	cp -r tesseract-ocr/tessdata/eng.* $ISLANDORA_HOME/share/tessdata
+	chown -R fedora:fedora /opt/islandora/share/tessdata/eng.*
+fi
