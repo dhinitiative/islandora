@@ -90,7 +90,7 @@ if [ $FEDORA_VERSION == "3.8" ]; then
   #
   ## Fresh fedora commons install
   #
-  ${JAVA_HOME}/bin/java -jar fcrepo-installer-3.8.jar $install_properties_file
+  ${JAVA_HOME}/bin/java -jar fcrepo-installer-3.8.0.jar $install_properties_file
 fi
 
 
