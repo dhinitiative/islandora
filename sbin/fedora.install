@@ -191,6 +191,14 @@ git clone https://github.com/Islandora/islandora-xacml-policies.git
 rm -rf ${CATALINA_HOME}/webapps/examples
 
 #
+# Configure tomcat users
+#
+# edit $FEDORA_HOME/tomcat/conf/tomcat-users.xml and replace </tomcat-users> with 
+#  <role rolename="manager"/>
+#  <user username="$FEDORA_ADMIN_USER" password="$FEDORA_ADMIN_PASS" roles="manager"/>
+#  </tomcat-users>
+
+#
 # set permissions
 # 
 chown -R $FEDORA_USER:$FEDORA_USER $FEDORA_HOME
