@@ -117,11 +117,8 @@ if [ $FEDORA_VERSION == "3.8" ]; then
   # After version 3.6 fedora configuration has changed per:
   # https://wiki.duraspace.org/display/FEDORA36/Spring+Configuration
   #
-	sed -i "s/value\=\"localhost\"/value\=\"$SERVER_FULL_NAME\"/g" $CATALINA_HOME/webapps/fedora/WEB-INF/applicationContext.xml
-	sed -i "s/value\=\"bob\@example\.org sally\@example\.org\"/value\=\"$ADMIN_EMAIL\"/g" $CATALINA_HOME/webapps/fedora/WEB-INF/applicationContext.xml 
-	#sed -i "s/name\=\"httpClientMaxConnectionsPerHost\" value\=\"5\"/name\=\"httpClientMaxConnectionsPerHost\" value\=\"25\"/g" $CATALINA_HOME/webapps/fedora/WEB-INF/applicationContext.xml
-	#sed -i "s/name\=\"indexDCFields\" value\=\"true\"/name\=\"indexDCFields\" value\=\"false\"/g" $CATALINA_HOME/webapps/fedora/WEB-INF/applicationContext.xml
-	#sed -i "s/autoChecksum\" value=\"false/autoChecksum\" value=\"true/g" $CATALINA_HOME/webapps/fedora/WEB-INF/applicationContext.xml
+	#sed -i "s/value\=\"localhost\"/value\=\"$SERVER_FULL_NAME\"/g" $CATALINA_HOME/webapps/fedora/WEB-INF/applicationContext.xml
+	#sed -i "s/value\=\"bob\@example\.org sally\@example\.org\"/value\=\"$ADMIN_EMAIL\"/g" $CATALINA_HOME/webapps/fedora/WEB-INF/applicationContext.xml 
 	# 
 	# Update datastore structure in $FEDORA_HOME/server/config/spring/akubra-llstore.xml
 	#
@@ -153,6 +150,18 @@ service fedora start
 sleep 10
 service fedora stop
 
+if [ $FEDORA_VERSION == "3.8" ]; then
+  #
+  # Edit fedora describe page
+  # After version 3.6 fedora configuration has changed per:
+  # https://wiki.duraspace.org/display/FEDORA36/Spring+Configuration
+  #
+	sed -i "s/value\=\"localhost\"/value\=\"$SERVER_FULL_NAME\"/g" $CATALINA_HOME/webapps/fedora/WEB-INF/applicationContext.xml
+	sed -i "s/value\=\"bob\@example\.org sally\@example\.org\"/value\=\"$ADMIN_EMAIL\"/g" $CATALINA_HOME/webapps/fedora/WEB-INF/applicationContext.xml 
+	#sed -i "s/name\=\"httpClientMaxConnectionsPerHost\" value\=\"5\"/name\=\"httpClientMaxConnectionsPerHost\" value\=\"25\"/g" $CATALINA_HOME/webapps/fedora/WEB-INF/applicationContext.xml
+	#sed -i "s/name\=\"indexDCFields\" value\=\"true\"/name\=\"indexDCFields\" value\=\"false\"/g" $CATALINA_HOME/webapps/fedora/WEB-INF/applicationContext.xml
+	#sed -i "s/autoChecksum\" value=\"false/autoChecksum\" value=\"true/g" $CATALINA_HOME/webapps/fedora/WEB-INF/applicationContext.xml
+fi 
 #
 # get drupal_filter
 #
