@@ -49,7 +49,7 @@ if [ $SOLR_VERSION == "4.2.0" ]; then
   wget -N -P $SRC_DIR https://archive.apache.org/dist/lucene/solr/4.2.0/solr-4.2.0.tgz
   tar -zxvf solr-4.2.0.tgz
   chown -R $FEDORA_USER:$FEDORA_USER solr-4.2.0
-  cp solr-4.2.0/example/webapps/solr.war ${FEDORA_HOME}/tomcat/webapps
+  cp solr-4.2.0/dist/solr-4.2.0.war ${CATALINA_HOME}/webapps/solr.war
   cp -r solr-4.2.0/example/solr $SOLR_HOME
   sleep 60   # wait for war to load in fedora
 fi
