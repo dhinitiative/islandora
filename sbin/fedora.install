@@ -194,9 +194,8 @@ rm -rf ${CATALINA_HOME}/webapps/examples
 # Configure tomcat users
 #
 # edit $FEDORA_HOME/tomcat/conf/tomcat-users.xml and replace </tomcat-users> with 
-#  <role rolename="manager"/>
-#  <user username="$FEDORA_ADMIN_USER" password="$FEDORA_ADMIN_PASS" roles="manager"/>
-#  </tomcat-users>
+#  sed -i "s/</tomcat-users>/<user username="$FEDORA_ADMIN_USER" password="$FEDORA_ADMIN_PASS" roles="manager,admin-gui,manager-gui"/>/g $CATALINA_HOME/conf/tomcat-users.xml
+#  echo >> "</tomcat-users>" >> $CATALAINA_HOME/conf/tomcat-users.xml
 
 #
 # set permissions
