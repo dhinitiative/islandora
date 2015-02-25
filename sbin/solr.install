@@ -85,10 +85,10 @@ fi
 # Setup context file for fedora
 #
 if [ $SOLR_VERSION == "4.2.0" ]; then
-      echo "\<\?xml version\=\"1\.0\" encoding\=\"UTF-8\"\?\>" > $CATALINA_HOME/conf/Catalina/localhost/solr.xml
-      echo "\<Context docBase\=\"$CATALINA_HOME\/webapps\/solr\.war\" debug\=\"0\" crossContext\=\"true\"\>" >> $CATALINA_HOME/conf/Catalina/localhost/solr.xml
-      echo "\<Environment name\=\"solr\/home\" type\=\"java\.lang\.String\" value\=\"$SOLR_HOME\" override\=\"true\"\/\>" >> $CATALINA_HOME/conf/Catalina/localhost/solr.xml
-      echo "\<\/Context\>" >> $CATALINA_HOME/conf/Catalina/localhost/solr.xml
+      echo "<?xml version="1.0" encoding="UTF-8"?>" > $CATALINA_HOME/conf/Catalina/localhost/solr.xml
+      echo "<Context docBase="$CATALINA_HOME/webapps/solr.war" debug="0" crossContext="true">" >> $CATALINA_HOME/conf/Catalina/localhost/solr.xml
+      echo "<Environment name="solr/home" type="java.lang.String" value="$SOLR_HOME" override="true"/>" >> $CATALINA_HOME/conf/Catalina/localhost/solr.xml
+      echo "</Context>" >> $CATALINA_HOME/conf/Catalina/localhost/solr.xml
 fi
 
 # Setup Solr logging
