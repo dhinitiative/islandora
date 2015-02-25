@@ -103,3 +103,8 @@ cp ../etc/log4j.properties-solr $CATALINA_HOME/webapps/solr/WEB-INF/classes/log4
 # add in ICU class libraries from dist/contrib
 # in schema.xml after solr.LowerCaseFilterFactory add  <filter class=“solr.ICUFoldingFilterFactory”/>
 # 
+
+#
+# Restart fedora
+#
+service fedora restart
