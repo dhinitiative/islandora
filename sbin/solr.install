@@ -57,8 +57,8 @@ fi
 # install web.xml
 #
 mv ${FEDORA_HOME}/tomcat/webapps/solr/WEB-INF/web.xml ${FEDORA_HOME}/tomcat/webapps/solr/WEB-INF/web.xml-orig
-chown $FEDORA_USER:$FEDORA_USER ../etc/solr-web.xml
-cp ../etc/solr-web.xml ${FEDORA_HOME}/tomcat/webapps/solr/WEB-INF/web.xml
+chown $FEDORA_USER:$FEDORA_USER ../etc/solr-web.xml-$SOLR_VERSION
+cp ../etc/solr-web.xml-$SOLR_VERSION ${FEDORA_HOME}/tomcat/webapps/solr/WEB-INF/web.xml
 
 
 #
@@ -80,7 +80,17 @@ if [ $SOLR_VERSION == "4.2.0" ]; then
     echo "GSEARCH 2.6 isn't installed."
   fi
 fi
-# 
+
+#
+# Setup context file for fedora
+#
+if [ $SOLR_VERSION == "4.2.0." ]; then
+      echo "<?xml version="1.0" encoding="UTF-8"?>" > $CATALINA_HOME/conf/Catalina/localhost/solr.xml
+      echo "<Context docBase="$CATALINA_HOME/webapps/solr.war" debug="0" crossContext="true">" >> $CATALINA_HOME/conf/Catalina/localhost/solr.xml
+      echo "<Environment name="solr/home" type="java.lang.String" value="$SOLR_HOME" override="true"/>" >> $CATALINA_HOME/conf/Catalina/localhost/solr.xml
+      echo "</Context>" >> $CATALINA_HOME/conf/Catalina/localhost/solr.xml
+fi
+
 # Setup Solr logging
 #
 #mv $CATALINA_HOME/webapps/solr/WEB-INF/classes/log4j.properties $CATALINA_HOME/webapps/solr/WEB-INF/classes/log4j.properties-orig
