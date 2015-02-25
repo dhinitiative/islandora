@@ -71,15 +71,15 @@ cp ../etc/fedora-users.xml ${FEDORA_HOME}/server/config/
 #
 # modify the values to reflect this installation with sed
 cd $SRC_DIR
-sed -i s/FGSADMIN_USER_TO_CHANGE/$FEDORA_GSEARCH_ADMIN_USER/g ../etc/fgsconfig-basic.properties
-sed -i s/FGSADMIN_PASS_TO_CHANGE/$FEDORA_GSEARCH_ADMIN_PASS/g ../etc/fgsconfig-basic.properties
-sed -i "s|FEDORA_HOME_TO_CHANGE|$FEDORA_HOME|g" ../etc/fgsconfig-basic.properties
-sed -i s/FEDORA_ADMIN_USER_TO_CHANGE/$FEDORA_ADMIN_USER/g ../etc/fgsconfig-basic.properties
-sed -i s/FEDORA_ADMIN_PASS_TO_CHANGE/$FEDORA_ADMIN_PASS/g ../etc/fgsconfig-basic.properties
-sed -i "s|localhost|$SERVER_FULL_NAME|g" ../etc/fgsconfig-basic.properties
+sed -i s/FGSADMIN_USER_TO_CHANGE/$FEDORA_GSEARCH_ADMIN_USER/g ../etc/fgsconfig-basic.properties-$GSEARCH_VERSION
+sed -i s/FGSADMIN_PASS_TO_CHANGE/$FEDORA_GSEARCH_ADMIN_PASS/g ../etc/fgsconfig-basic.properties-$GSEARCH_VERSION
+sed -i "s|FEDORA_HOME_TO_CHANGE|$FEDORA_HOME|g" ../etc/fgsconfig-basic.properties-$GSEARCH_VERSION
+sed -i s/FEDORA_ADMIN_USER_TO_CHANGE/$FEDORA_ADMIN_USER/g ../etc/fgsconfig-basic.properties-$GSEARCH_VERSION
+sed -i s/FEDORA_ADMIN_PASS_TO_CHANGE/$FEDORA_ADMIN_PASS/g ../etc/fgsconfig-basic.properties-$GSEARCH_VERSION
+sed -i "s|localhost|$SERVER_FULL_NAME|g" ../etc/fgsconfig-basic.properties-$GSEARCH_VERSION
 # install the config file
 chown $FEDORA_USER:$FEDORA_USER ../etc/fgsconfig-basic.properties
-cp ../etc/fgsconfig-basic.properties $FEDORA_HOME/tomcat/webapps/fedoragsearch/FgsConfig/
+cp ../etc/fgsconfig-basic.properties-$GSEARCH_VERSION $FEDORA_HOME/tomcat/webapps/fedoragsearch/FgsConfig/fgsconfig-basic.properties
 #
 # build config
 #
