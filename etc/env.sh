@@ -40,7 +40,8 @@ export KAKADU_LIBRARY_PATH="-DLD_LIBRARY_PATH=$DJATOKA_HOME/lib/Linux-x86-64"
 #---------------------------------------------
 #
 export JAVA_HOME=JAVA_HOME_TO_CHANGE
-export JRE_HOME=$JAVA_HOME/jre
+#export JRE_HOME=$JAVA_HOME/jre
+export JRE_HOME=$JAVA_HOME/lib/jvm/jre
 export JAVA_OPTS="-Xms1024m -Xmx1024m -XX:MaxPermSize=1200m -Djavax.net.ssl.trustStore=$FEDORA_HOME/server/truststore -Djavax.net.ssl.trustStorePassword=tomcat"
 # for djatoka
 export JAVA_OPTS="$JAVA_OPTS -Djava.awt.headless=true -Dkakadu.home=$KAKADU_HOME -Djava.library.path=$DJATOKA_HOME/lib/Linux-x86-64 $KAKADU_LIBRARY_PATH"
