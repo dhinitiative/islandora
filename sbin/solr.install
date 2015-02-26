@@ -75,6 +75,7 @@ if [ $SOLR_VERSION == "3.6.2" ]; then
 fi
 if [ $SOLR_VERSION == "4.2.0" ]; then
   if [ $GSEARCH_VERSION == "2.6" ]; then
+    mv $SOLR_HOME/collection1/conf/schema.xml $SOLR_HOME/collection1/conf/schema.bak
     cp ${FEDORA_HOME}/tomcat/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/conf/schema-4.2.0-for-fgs-2.6.xml $SOLR_HOME/collection1/conf/schema.xml
   else
     echo "GSEARCH 2.6 isn't installed."
