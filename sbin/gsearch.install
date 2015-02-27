@@ -78,7 +78,7 @@ sed -i s/FEDORA_ADMIN_USER_TO_CHANGE/$FEDORA_ADMIN_USER/g ../etc/fgsconfig-basic
 sed -i s/FEDORA_ADMIN_PASS_TO_CHANGE/$FEDORA_ADMIN_PASS/g ../etc/fgsconfig-basic.properties-$GSEARCH_VERSION
 sed -i "s|localhost|$SERVER_FULL_NAME|g" ../etc/fgsconfig-basic.properties-$GSEARCH_VERSION
 # install the config file
-chown $FEDORA_USER:$FEDORA_USER ../etc/fgsconfig-basic.properties
+chown $FEDORA_USER:$FEDORA_USER ../etc/fgsconfig-basic.properties-$GSEARCH_VERSION
 cp ../etc/fgsconfig-basic.properties-$GSEARCH_VERSION $FEDORA_HOME/tomcat/webapps/fedoragsearch/FgsConfig/fgsconfig-basic.properties
 #
 # build config
