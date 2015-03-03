@@ -40,23 +40,20 @@ yum -y install unzip
 # Enable EPEL
 #
 rpm -ivh http://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
-
-if [ $INSTALL_ISLANDORA == "Yes" ]; then
-	#
-	# Enable RPM Fusion Repo
-	rpm -ivh http://download1.rpmfusion.org/free/el/updates/6/i386/rpmfusion-free-release-6-1.noarch.rpm
-	#
-	# Get RPM Fusion softwares
-	#
-	yum -y install ffmpeg
-	yum -y install xpdf
-	yum -y install lame
-	#
-	# ffmpeg2theora
-	#
-	wget -N -P ../src http://v2v.cc/~j/ffmpeg2theora/ffmpeg2theora-0.29.linux64.bin
-	install -m 755 ../src/ffmpeg2theora-0.29.linux64.bin /usr/bin/ffmpeg2theora
-fi
+#
+# Enable RPM Fusion Repo
+rpm -ivh http://download1.rpmfusion.org/free/el/updates/6/i386/rpmfusion-free-release-6-1.noarch.rpm
+#
+# Get RPM Fusion softwares
+#
+yum -y install ffmpeg
+yum -y install xpdf
+yum -y install lame
+#
+# ffmpeg2theora
+#
+wget -N -P ../src http://v2v.cc/~j/ffmpeg2theora/ffmpeg2theora-0.29.linux64.bin
+install -m 755 ../src/ffmpeg2theora-0.29.linux64.bin /usr/bin/ffmpeg2theora
 #
 # create fedora user account
 #
