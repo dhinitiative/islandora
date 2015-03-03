@@ -30,30 +30,12 @@ yum -y install gcc
 yum -y install gcc-c++
 yum -y install autoconf
 #yum -y install java-1.6.0-openjdk.x86_64
-yum -y install java-1.8.0
+yum -y install java-1.7.0
 yum -y install ImageMagick
 yum -y install ghostscript
 yum -y install ant
 yum -y install git
 yum -y install unzip
-#
-# Enable EPEL
-#
-rpm -ivh http://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
-#
-# Enable RPM Fusion Repo
-rpm -ivh http://download1.rpmfusion.org/free/el/updates/6/i386/rpmfusion-free-release-6-1.noarch.rpm
-#
-# Get RPM Fusion softwares
-#
-yum -y install ffmpeg
-yum -y install xpdf
-yum -y install lame
-#
-# ffmpeg2theora
-#
-wget -N -P ../src http://v2v.cc/~j/ffmpeg2theora/ffmpeg2theora-0.29.linux64.bin
-install -m 755 ../src/ffmpeg2theora-0.29.linux64.bin /usr/bin/ffmpeg2theora
 #
 # create fedora user account
 #
@@ -65,12 +47,33 @@ usermod -G fedora apache
 #
 #chmod 775 $INSTALL_PREFIX # change below to this but need to have INSTALL_PREFIX in env.sh first
 chmod 775 /opt
-chown -R $FEDORA_USER:$FEDORA_USER $INSTALL_PREFIX/islandora
-#
-# End of Operating System Software Setup
-#=======================================================
+
 
 if [ $INSTALL_ISLANDORA == "Yes" ]; then
+	#
+	# Enable EPEL
+	#
+	rpm -ivh http://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
+	#
+	# Enable RPM Fusion Repo
+	#
+	rpm -ivh http://download1.rpmfusion.org/free/el/updates/6/i386/rpmfusion-free-release-6-1.noarch.rpm
+	#
+	# Get RPM Fusion softwares
+	#
+	yum -y install ffmpeg
+	yum -y install xpdf
+	yum -y install lame
+	#
+	# ffmpeg2theora
+	#
+	wget -N -P ../src http://v2v.cc/~j/ffmpeg2theora/ffmpeg2theora-0.29.linux64.bin
+	install -m 755 ../src/ffmpeg2theora-0.29.linux64.bin /usr/bin/ffmpeg2theora
+
+	#
+	# End of Operating System Software Setup
+	#=======================================================
+
 	#
 	# Needed for tesseract to find leptonica
 	#
