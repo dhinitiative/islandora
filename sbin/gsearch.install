@@ -97,3 +97,25 @@ chown -R $FEDORA_USER:$FEDORA_USER $FEDORA_HOME
 # RepositoryLongName	Repository for REPOSNAME configuration
 # RepositoryDeveloper	Gert Schmeltz Pedersen, DTIC@DTU
 # RepositoryContact	gsp@dtic.dtu.dk
+
+
+#
+# install Maven
+#
+  wget -N -P $SRC_DIR  http://mirror.olnevhost.net/pub/apache/maven/maven-3/3.2.5/binaries/apache-maven-3.2.5-bin.tar.gz
+  cd $SRC_DIR
+  tar -zxvf apache-maven-3.2.5-bin.tar.gz
+  chown -R $FEDORA_USER:$FEDORA_USER apache-maven-3.2.5
+  mv apache-maven-3.2.5 ${ISLANDORA_HOME}/packages
+  ln -s ${ISLANDORA_HOME}/packages/bin/mvn ${ISLANDORA_HOME}/bin/mvn
+  
+#
+# extra extentions
+#
+# https://github.com/discoverygarden/dgi_gsearch_extensions
+cd $SRC_DIR
+git clone https://github.com/discoverygarden/dgi_gsearch_extensions.git
+cd dgi_gsearch_extensions
+${ISLANDORA_HOME}/bin/mvn package
+chown -R $FEDORA_USER:$FEDORA_USER .
+cp target/gsearch_extensions-0.1.1-jar-with-dependencies.jar $CATALINA_HOME/webapps/fedoragsearch/WEB-INF/lib
