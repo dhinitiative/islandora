@@ -60,7 +60,7 @@ if [ $SOLR_VERSION == "4.2.0" ]; then
   sed -i "s/localhost/$FULL_SERVER_NAME/g" basic-solr-config/index.properties
   rm basic-colr-config/README.md
   chown -R $FEDORA_USER:$FEDORA_USER basic-solr-config
-  rsync -var basic-solr-config/ $SOLR_HOME/collection1/
+  #rsync -var basic-solr-config/ $SOLR_HOME/collection1/
 fi
 #
 # install web.xml
