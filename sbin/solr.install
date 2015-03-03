@@ -52,6 +52,13 @@ if [ $SOLR_VERSION == "4.2.0" ]; then
   cp solr-4.2.0/dist/solr-4.2.0.war ${CATALINA_HOME}/webapps/solr.war
   cp -r solr-4.2.0/example/solr $SOLR_HOME
   sleep 60   # wait for war to load in fedora
+  #
+  # Grab basic_solr_config
+  #
+  git clone  https://github.com/discoverygarden/basic-solr-config.git
+  sed -i "s/localhost/$FULL_SERVER_NAME/g" basic-solr-config/foxmlToSolr.xslt
+  sed -i "s/localhost/$FULL_SERVER_NAME/g" basic-solr-config/index.properties
+  
 fi
 #
 # install web.xml
