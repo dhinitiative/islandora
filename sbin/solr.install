@@ -51,6 +51,16 @@ if [ $SOLR_VERSION == "4.2.0" ]; then
   chown -R $FEDORA_USER:$FEDORA_USER solr-4.2.0
   cp solr-4.2.0/dist/solr-4.2.0.war ${CATALINA_HOME}/webapps/solr.war
   cp -r solr-4.2.0/example/solr $SOLR_HOME
+  #
+  # Secure the solr admin interface 
+  #  (from http://www.sphinxconsultant.com/secure-solr-admin-interface-tomcat)
+  #
+   #
+   # Add new user to ${CATALINA_HOME}/conf/tomcat-users.xml
+   #
+   #<!– for Solr –>
+   #<role rolrename=”solr_manager_role”/>
+   #<user username=”solr_admin” password=”SecretPassword” roles=”solr_manager_role”/>
   sleep 60   # wait for war to load in fedora
   #
   # Grab basic_solr_config
@@ -111,14 +121,6 @@ fi
 #mv $CATALINA_HOME/webapps/solr/WEB-INF/classes/log4j.properties $CATALINA_HOME/webapps/solr/WEB-INF/classes/log4j.properties-orig
 #mkdir -p $CATALINA_HOME/webapps/solr/WEB-INF/classes
 #cp ../etc/log4j.properties-solr $CATALINA_HOME/webapps/solr/WEB-INF/classes/log4j.properties
-
-# 
-# add in ICU (unicode support)
-# 
-# add in ICU class libraries from dist/contrib
-# in schema.xml after solr.LowerCaseFilterFactory add  <filter class=“solr.ICUFoldingFilterFactory”/>
-# 
-
 #
 # Restart fedora
 #
