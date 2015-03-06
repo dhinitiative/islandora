@@ -55,7 +55,7 @@ usermod -G fedora apache
 chmod 775 /opt
 
 
-#if [ $INSTALL_ISLANDORA == "Yes" ]; then
+if [ $INSTALL_ISLANDORA == "Yes" ]; then
 	#
 	# Enable EPEL
 	#
@@ -118,4 +118,4 @@ chmod 775 /opt
 	tar -zxvf tesseract-ocr-3.02.eng.tar.gz
 	cp -r tesseract-ocr/tessdata/eng.* $ISLANDORA_HOME/share/tessdata
 	chown -R fedora:fedora /opt/islandora/share/tessdata/eng.*
-#fi
+fi
