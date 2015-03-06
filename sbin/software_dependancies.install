@@ -48,6 +48,8 @@ yum -y install unzip
 groupadd -r $FEDORA_USER
 useradd -c 'fedora user account' -g $FEDORA_USER -d $ISLANDORA_HOME -M -r -s /bin/bash $FEDORA_USER
 usermod -G fedora apache
+echo "Be sure to set the password for the fedora user (${FEDORA_USER})." > /etc/motd
+echo "" >> /etc/motd
 #
 # set permission on INSTALL_DIR
 #
