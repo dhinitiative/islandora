@@ -29,6 +29,12 @@
 yum -y install gcc
 yum -y install gcc-c++
 yum -y install autoconf
+yum -y install automake
+yum -y installl libtool
+yum -y install make
+yum -y install nasm
+yum -y install pkgconfig
+yum -y install zlib-devel
 #yum -y install java-1.6.0-openjdk.x86_64
 yum -y install java-1.7.0
 yum -y install ImageMagick
@@ -49,7 +55,7 @@ usermod -G fedora apache
 chmod 775 /opt
 
 
-if [ $INSTALL_ISLANDORA == "Yes" ]; then
+#if [ $INSTALL_ISLANDORA == "Yes" ]; then
 	#
 	# Enable EPEL
 	#
@@ -112,4 +118,4 @@ if [ $INSTALL_ISLANDORA == "Yes" ]; then
 	tar -zxvf tesseract-ocr-3.02.eng.tar.gz
 	cp -r tesseract-ocr/tessdata/eng.* $ISLANDORA_HOME/share/tessdata
 	chown -R fedora:fedora /opt/islandora/share/tessdata/eng.*
-fi
+#fi
