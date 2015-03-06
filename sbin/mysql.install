@@ -64,7 +64,8 @@ service mysqld start
 #
 # Remind to execute /usr/bin/mysql_secure_installation
 #
-echo "Please run /usr/bin/mysql_secure_installation" > /etc/motd
+echo "" >> /etc/motd
+echo "Please run /usr/bin/mysql_secure_installation" >> /etc/motd
 echo "and then remove this reminder from /etc/motd" >> /etc/motd
 
 
