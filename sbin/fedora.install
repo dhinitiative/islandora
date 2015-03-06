@@ -223,6 +223,23 @@ rm -rf ${CATALINA_HOME}/webapps/examples
 #  echo >> "</tomcat-users>" >> $CATALAINA_HOME/conf/tomcat-users.xml
 
 #
+# Enable CORS (Cross Origin Resource Sharing)
+# from (https://www.dforge.net/2013/09/16/enabling-cors-on-apache-tomcat-6/)
+#
+cd $CATALINA_HOME/lib
+wget -O cors-filter-2.3.jar http://search.maven.org/remotecontent?filepath=com/thetransactioncompany/cors-filter/2.3/cors-filter-2.3.jar
+wget -O java-property-utils-1.9.jar http://search.maven.org/remotecontent?filepath=com/thetransactioncompany/java-property-utils/1.9/java-property-utils-1.9.jar
+sed -i "s|</web-app>|<filter>|g" $CATALINA_HOME/conf/web.xml
+echo "<filter-name>CORS</filter-name>" >> $CATALINA_HOME/conf/web.xml
+echo "<filter-class>com.thetransactioncompany.cors.CORSFilter</filter-class>" >> $CATALINA_HOME/conf/web.xml
+echo "</filter>" >> $CATALINA_HOME/conf/web.xml
+echo "<filter-mapping>" >> $CATALINA_HOME/conf/web.xml
+echo "<filter-name>CORS</filter-name>" >> $CATALINA_HOME/conf/web.xml
+echo "<url-pattern>/*</url-pattern>" >> $CATALINA_HOME/conf/web.xml
+echo "</filter-mapping>" >> $CATALINA_HOME/conf/web.xml
+echo "</web-app>" >> $CATALINA_HOME/conf/web.xml
+
+#
 # set permissions
 # 
 chown -R $FEDORA_USER:$FEDORA_USER $FEDORA_HOME
