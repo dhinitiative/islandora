@@ -107,7 +107,7 @@ chown -R $FEDORA_USER:$FEDORA_USER $FEDORA_HOME
   tar -zxvf apache-maven-3.2.5-bin.tar.gz
   chown -R $FEDORA_USER:$FEDORA_USER apache-maven-3.2.5
   mv apache-maven-3.2.5 ${ISLANDORA_HOME}/packages
-  ln -s ${ISLANDORA_HOME}/packages/bin/mvn ${ISLANDORA_HOME}/bin/mvn
+  ln -s ${ISLANDORA_HOME}/packages/apache-maven-3.2.5/bin/mvn ${ISLANDORA_HOME}/bin/mvn
   
 #
 # extra extentions
