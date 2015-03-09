@@ -42,6 +42,7 @@ yum -y install ghostscript
 yum -y install ant
 yum -y install git
 yum -y install unzip
+yum -y install freetype-devel
 #
 # create fedora user account
 #
@@ -69,7 +70,7 @@ if [ $INSTALL_ISLANDORA == "Yes" ]; then
 	#
 	# Get RPM Fusion softwares
 	#
-	yum -y install ffmpeg
+	#yum -y install ffmpeg
 	yum -y install xpdf
 	yum -y install lame
 	#
@@ -77,6 +78,109 @@ if [ $INSTALL_ISLANDORA == "Yes" ]; then
 	#
 	wget -N -P ../src http://v2v.cc/~j/ffmpeg2theora/ffmpeg2theora-0.29.linux64.bin
 	install -m 755 ../src/ffmpeg2theora-0.29.linux64.bin /usr/bin/ffmpeg2theora
+	#
+	# Install ffmpeg from source (https://trac.ffmpeg.org/wiki/CompilationGuide/Centos)
+	#
+	cd $SRC_DIR
+	mkdir ffmpeg_sources
+	cd ffmpeg_sources
+	#
+	# install Yasm
+	#
+	git clone --depth 1 git://github.com/yasm/yasm.git
+	cd yasm
+	autoreconf -fiv
+	./configure --prefix=$ISLANDORA_PKGS/ffmpeg --bindir="$ISLANDORA_PKGS/ffmpeg/bin"
+	make
+	make install
+	make distclean
+	#
+	# Install libx264
+	#
+	cd $SRC_DIR/ffmpeg_sources
+	git clone --depth 1 git://git.videolan.org/x264
+	cd x264
+	./configure --prefix=$ISLANDORA_PKGS/ffmpeg --bindir="$ISLANDORA_PKGS/ffmpeg/bin" --enable-static
+	make
+	make install
+	make distclean
+	#
+	# install libfdk_aac
+	#
+	cd $SRC_DIR/ffmpeg_sources
+	git clone --depth 1 git://git.code.sf.net/p/opencore-amr/fdk-aac
+	cd fdk-aac
+	autoreconf -fiv
+	./configure --prefix=$ISLANDORA_PKGS/ffmpeg --disable-shared
+	make
+	make install
+	make distclean
+	#
+	# install libmp3lame (installed from yum above)
+	#
+	#cd $SRC_DIR/ffmpeg_sources
+	#curl -L -O http://downloads.sourceforge.net/project/lame/lame/3.99/lame-3.99.5.tar.gz
+	#tar xzvf lame-3.99.5.tar.gz
+	#cd lame-3.99.5
+	#./configure --prefix=$ISLANDORA_PKGS/ffmpeg --bindir="$ISLANDORA_PKGS/ffmpeg/bin" --disable-shared --enable-nasm
+	#make
+	#make install
+	#make distclean
+	#
+	# install libopus
+	#
+	cd $SRC_DIR/ffmpeg_sources
+	git clone git://git.opus-codec.org/opus.git
+	cd opus
+	autoreconf -fiv
+	./configure --prefix=$ISLANDORA_PKGS/ffmpeg --disable-shared
+	make
+	make install
+	make distclean
+	#
+	# install libogg
+	#
+	cd $SRC_DIR/ffmpeg_sources
+	curl -O http://downloads.xiph.org/releases/ogg/libogg-1.3.2.tar.gz
+	tar xzvf libogg-1.3.2.tar.gz
+	cd libogg-1.3.2
+	./configure --prefix=$ISLANDORA_PKGS/ffmpeg --disable-shared
+	make
+	make install
+	make distclean
+	#
+	# libvorbis
+	#
+	cd $SRC_DIR/ffmpeg_sources
+	curl -O http://downloads.xiph.org/releases/vorbis/libvorbis-1.3.4.tar.gz
+	tar xzvf libvorbis-1.3.4.tar.gz
+	cd libvorbis-1.3.4
+	./configure --prefix=$ISLANDORA_PKGS/ffmpeg --with-ogg="$ISLANDORA_PKGS/ffmpeg" --disable-shared
+	make
+	make install
+	make distclean
+	#
+	# install libvpx
+	#
+	cd $SRC_DIR/ffmpeg_sources
+	git clone --depth 1 https://chromium.googlesource.com/webm/libvpx.git
+	cd libvpx
+	./configure --prefix="$ISLANDORA_PKGS/ffmpeg" --disable-examples
+	make
+	make install
+	make clean
+	#
+	# build ffmpeg
+	#
+	cd $SRC_DIR/ffmpeg_sources
+	git clone --depth 1 git://source.ffmpeg.org/ffmpeg
+	cd ffmpeg
+	PKG_CONFIG_PATH="$ISLANDORA_PKGS/ffmpeg/lib/pkgconfig" ./configure --prefix="$ISLANDORA_PKGS/ffmpeg" --extra-cflags="-I$ISLANDORA_PKGS/ffmpeg/include" --extra-ldflags="-L$ISLANDORA_PKGS/ffmpeg/lib" --bindir="$ISLANDORA_PKGS/ffmpeg/bin" --enable-gpl --enable-nonfree --enable-libfdk_aac --enable-libmp3lame --enable-libopus --enable-libvorbis --enable-libvpx --enable-libx264 --enable-libfreetype --enable-libtheora
+	make
+	make install
+	make distclean
+	hash -r
+
 
 	#
 	# End of Operating System Software Setup
