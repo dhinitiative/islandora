@@ -44,15 +44,15 @@ service httpd stop
 # change /etc/http.d/conf/httpd.conf
 #
 cp /etc/httpd/conf/httpd.conf /etc/httpd/conf/htppd.conf-orig
-sed -i 's/ServerAdmin root\@localhost/ServerAdmin $ADMIN_EMAIL/g' /etc/httpd/conf/httpd.conf
-sed -i 's/\#ServerName www.example.com\:80/ServerName $SERVER_FULL_NAME\:80/g' /etc/httpd/conf/httpd.conf
-sed -i 's/\#NameVirtualHost/NameVirtualHost/g' /etc/httpd/conf/httpd.conf
+sed -i "s|ServerAdmin root@localhost|ServerAdmin $ADMIN_EMAIL|g" /etc/httpd/conf/httpd.conf
+sed -i "s|#ServerName www.example.com:80|ServerName $SERVER_FULL_NAME:80|g" /etc/httpd/conf/httpd.conf
+sed -i "s|#NameVirtualHost|NameVirtualHost|g" /etc/httpd/conf/httpd.conf
 
 #
 # add in HOSTNAME.conf to /etc/httpd/conf.d
 #
-sed -i s/EMAIL_TO_CHANGE/$ADMIN_EMAIL/g ../etc/apache.conf
-sed -i s/SERVER_NAME_TO_CHANGE/$SERVER_FULL_NAME/g ../etc/apache.conf
+sed -i "s|EMAIL_TO_CHANGE|$ADMIN_EMAIL|g" ../etc/apache.conf
+sed -i "s|SERVER_NAME_TO_CHANGE|$SERVER_FULL_NAME|g" ../etc/apache.conf
 sed -i "s|DRUPAL_ROOT_TO_CHANGE|$DRUPAL_ROOT|g" ../etc/apache.conf
 
 cp ../etc/apache.conf /etc/httpd/conf.d/$SERVER_NAME.conf
