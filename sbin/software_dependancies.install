@@ -180,7 +180,13 @@ chmod 775 /opt
 	make install
 	make distclean
 	hash -r
-
+	#
+	# install Makefile that populates symlinks from $ISLANDORA_PKGS/ffmpeg to $ISLANDORA_HOME
+	#
+	cd $ISLANDORA_PKGS/ffmpeg
+	../../sbin/create_package_makefile.sh
+	make install
+	
 
 	#
 	# End of Operating System Software Setup
