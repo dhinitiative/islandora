@@ -32,7 +32,7 @@ sed -i "s|JAVA_HOME_TO_CHANGE|$JAVA_HOME|g" ../etc/env.sh
 sed -i "s|GSEARCH_VERSION_TO_CHANGE|$GSEARCH_VERSION|g" ../etc/env.sh
 
 sed -i "s/DATABASE_SERVER_TO_CHANGE/$DB_SERVER/g" ../etc/database.sh
-sed -i "s/FULL_SERVER_NAME_TO_CHANGE/$FULL_SERVER_NAME/g" ../etc/database.sh
+sed -i "s/FULL_SERVER_NAME_TO_CHANGE/$SERVER_FULL_NAME/g" ../etc/database.sh
 sed -i "s/SERVER_NAME_TO_CHANGE/$SERVER_NAME/g" ../etc/database.sh
 sed -i "s/ADMIN_EMAIL_TO_CHANGE/$ADMIN_EMAIL/g" ../etc/database.sh
 sed -i "s|DRUPAL_ROOT_TO_CHANGE|$DRUPAL_ROOT|g" ../etc/database.sh
