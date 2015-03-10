@@ -43,6 +43,10 @@ fi
 
 if [ $SOLR_VERSION == "4.2.0" ]; then
   #
+  # stop fedora 
+  #
+  service fedora stop
+  #
   # install Solr 4.2.0
   #
   cd $SRC_DIR
@@ -62,6 +66,10 @@ if [ $SOLR_VERSION == "4.2.0" ]; then
    echo "<role rolename="solr_manager_role"/>" >> ${CATALINA_HOME}/conf/tomcat-users.xml
    echo "<user username="$FEDORA_ADMIN_USER" password="$FEDORA_ADMIN_PASS" roles="solr_manager_role"/>" >> ${CATALINA_HOME}/conf/tomcat-users.xml
    echo "</tomcat-users>" >> ${CATALINA_HOME}/conf/tomcat-users.xml
+  #
+  # start fedora to load the war so we can configure it. 
+  #
+  service fedora start
   sleep 60   # wait for war to load in fedora
   #
   # Grab basic_solr_config
