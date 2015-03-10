@@ -60,7 +60,7 @@ if [ $SOLR_VERSION == "4.2.0" ]; then
    #
    sed -i "s|</tomcat-users>|<!– for Solr –>|g" ${CATALINA_HOME}/conf/tomcat-users.xml
    echo "<role rolename="solr_manager_role"/>" >> ${CATALINA_HOME}/conf/tomcat-users.xml
-   echo "<user username="$FEDORA_ADMIN" password="$FEDORA_ADMIN_PASS" roles="solr_manager_role"/>" >> ${CATALINA_HOME}/conf/tomcat-users.xml
+   echo "<user username="$FEDORA_ADMIN_USER" password="$FEDORA_ADMIN_PASS" roles="solr_manager_role"/>" >> ${CATALINA_HOME}/conf/tomcat-users.xml
    echo "</tomcat-users>" >> ${CATALINA_HOME}/conf/tomcat-users.xml
   sleep 60   # wait for war to load in fedora
   #
