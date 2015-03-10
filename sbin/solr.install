@@ -67,8 +67,8 @@ if [ $SOLR_VERSION == "4.2.0" ]; then
   # Grab basic_solr_config
   #
   git clone  https://github.com/discoverygarden/basic-solr-config.git
-  sed -i "s/localhost/$FULL_SERVER_NAME/g" basic-solr-config/foxmlToSolr.xslt
-  sed -i "s/localhost/$FULL_SERVER_NAME/g" basic-solr-config/index.properties
+  sed -i "s/localhost/$SERVER_FULL_NAME/g" basic-solr-config/foxmlToSolr.xslt
+  sed -i "s/localhost/$SERVER_FULL_NAME/g" basic-solr-config/index.properties
   rm basic-colr-config/README.md
   chown -R $FEDORA_USER:$FEDORA_USER basic-solr-config
   #rsync -var basic-solr-config/ $SOLR_HOME/collection1/
