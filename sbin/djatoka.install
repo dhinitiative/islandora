@@ -24,7 +24,7 @@
 #
 # Make sure fedora is stopped
 #
-service fedora stop
+service fedora start
 #
 ## Adore Djatoka install
 #
@@ -33,8 +33,7 @@ wget -N -P $SRC_DIR http://downloads.sourceforge.net/project/djatoka/djatoka/1.1
 tar -zxvf adore-djatoka-1.1.tar.gz -C $ISLANDORA_PKGS
 chown -R $FEDORA_USER:$FEDORA_USER $ISLANDORA_PKGS/adore-djatoka-1.1
 cp $ISLANDORA_PKGS/adore-djatoka-1.1/dist/adore-djatoka.war $CATALINA_HOME/webapps/
-# load the new app
-service fedora start
+# wait for tomcat to load it
 sleep 60
 cp $ISLANDORA_PKGS/adore-djatoka-1.1/dist/adore-djatoka-1.1.jar ${FEDORA_HOME}/tomcat/webapps/adore-djatoka/WEB-INF/lib/
 #
