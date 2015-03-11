@@ -55,6 +55,7 @@ if [ $SOLR_VERSION == "4.2.0" ]; then
   chown -R $FEDORA_USER:$FEDORA_USER solr-4.2.0
   cp solr-4.2.0/dist/solr-4.2.0.war ${CATALINA_HOME}/webapps/solr.war
   cp -r solr-4.2.0/example/solr $SOLR_HOME
+  sed -i "s|localhost|$SERVER_FULL_NAME|g" $SOLR_HOME/collection1/conf/scripts.conf
   #
   # Secure the solr admin interface 
   #  (from http://www.sphinxconsultant.com/secure-solr-admin-interface-tomcat)
