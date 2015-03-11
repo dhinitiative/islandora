@@ -178,29 +178,4 @@
     <welcome-file>admin.html</welcome-file>
   </welcome-file-list>
 
-<!– START secure admin –>
-<!– Define a Security Constraint on this Application –>
-<security-constraint>
-<web-resource-collection>
-<web-resource-name>Solr Admin</web-resource-name>
-<url-pattern>/admin/*</url-pattern>
-</web-resource-collection>
-<auth-constraint>
-<role-name>solr_manager_role</role-name>
-</auth-constraint>
-</security-constraint>
-
-<!– Define the Login Configuration for this Application –>
-<login-config>
-<auth-method>BASIC</auth-method>
-<realm-name>Solr Admin Application</realm-name>
-</login-config>
-
-<!– Security roles referenced by this web application –>
-<security-role>
-<description>Solr Admin Role</description>
-<role-name>solr_manager_role</role-name>
-</security-role>
-<!– END secure admin –>
-
 </web-app>
