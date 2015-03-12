@@ -194,7 +194,7 @@ chmod 775 /opt
 	#
 	# End of Operating System Software Setup
 	#=======================================================
-
+        cd $SRC_DIR
 	#
 	# Needed for tesseract to find leptonica
 	#
