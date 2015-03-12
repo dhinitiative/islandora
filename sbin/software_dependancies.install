@@ -37,7 +37,9 @@ yum -y install yasm
 yum -y install pkgconfig
 yum -y install zlib-devel
 yum -y install java-1.6.0-openjdk.x86_64
-#yum -y install java-1.7.0
+if [ $DJATOKA_VERSION == "freelib" ]; then
+	yum -y install java-1.8.0
+fi
 yum -y install ImageMagick
 yum -y install ghostscript
 yum -y install ant
