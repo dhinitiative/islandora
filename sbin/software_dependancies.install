@@ -33,7 +33,6 @@ yum -y install automake
 yum -y installl libtool
 yum -y install make
 yum -y install nasm
-yum -y install yasm
 yum -y install pkgconfig
 yum -y install zlib-devel
 yum -y install java-1.6.0-openjdk.x86_64
@@ -76,6 +75,7 @@ chmod 775 /opt
 	#yum -y install ffmpeg
 	yum -y install xpdf
 	yum -y install lame
+	yum -y install yasm
 	#
 	# ffmpeg2theora
 	#
