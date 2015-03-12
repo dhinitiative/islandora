@@ -110,6 +110,8 @@ chmod 775 /opt
 	#
 	# install libfdk_aac
 	#
+	yum -y install gettext
+	yum -y install libtool
 	cd $SRC_DIR/ffmpeg_sources
 	git clone --depth 1 git://git.code.sf.net/p/opencore-amr/fdk-aac
 	cd fdk-aac
@@ -178,7 +180,7 @@ chmod 775 /opt
 	cd $SRC_DIR/ffmpeg_sources
 	git clone --depth 1 git://source.ffmpeg.org/ffmpeg
 	cd ffmpeg
-	PKG_CONFIG_PATH="$ISLANDORA_PKGS/ffmpeg/lib/pkgconfig" ./configure --prefix="$ISLANDORA_PKGS/ffmpeg" --extra-cflags="-I$ISLANDORA_PKGS/ffmpeg/include" --extra-ldflags="-L$ISLANDORA_PKGS/ffmpeg/lib" --bindir="$ISLANDORA_PKGS/ffmpeg/bin" --enable-gpl --enable-nonfree --enable-libfdk_aac --enable-libmp3lame --enable-libopus --enable-libvorbis --enable-libvpx --enable-libx264 --enable-libfreetype --enable-libtheora
+	PKG_CONFIG_PATH="$ISLANDORA_PKGS/ffmpeg/lib/pkgconfig" ./configure --prefix="$ISLANDORA_PKGS/ffmpeg" --extra-cflags="-I$ISLANDORA_PKGS/ffmpeg/include" --extra-ldflags="-L$ISLANDORA_PKGS/ffmpeg/lib:/usr/lib64" --bindir="$ISLANDORA_PKGS/ffmpeg/bin" --enable-gpl --enable-nonfree --enable-libfdk_aac --enable-libmp3lame --enable-libopus --enable-libvorbis --enable-libvpx --enable-libx264 --enable-libfreetype --enable-libtheora
 	make
 	make install
 	make distclean
