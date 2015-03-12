@@ -21,46 +21,57 @@
 # Source environment
 . ../etc/env.sh
 
-#
-# Make sure fedora is stopped
-#
-service fedora start
-#
-## Adore Djatoka install
-#
-cd $SRC_DIR
-wget -N -P $SRC_DIR http://downloads.sourceforge.net/project/djatoka/djatoka/1.1/adore-djatoka-1.1.tar.gz
-tar -zxvf adore-djatoka-1.1.tar.gz -C $ISLANDORA_PKGS
-chown -R $FEDORA_USER:$FEDORA_USER $ISLANDORA_PKGS/adore-djatoka-1.1
-cp $ISLANDORA_PKGS/adore-djatoka-1.1/dist/adore-djatoka.war $CATALINA_HOME/webapps/
-# wait for tomcat to load it
-sleep 60
-cp $ISLANDORA_PKGS/adore-djatoka-1.1/dist/adore-djatoka-1.1.jar ${FEDORA_HOME}/tomcat/webapps/adore-djatoka/WEB-INF/lib/
-#
-# update djatoka test page settings
-#
-# sed out localhost from $CATALINA_HOME/webapps/adore-djatoka/index.html to servername
-sed -i "s|localhost|$SERVER_FULL_NAME|g" $CATALINA_HOME/webapps/adore-djatoka/index.html
-#
-# link Djatoka binaries to /usr/bin
-# needed to do this in order to enable the module for Large Image Collection.
-# Then I in the module for the path I could change it to /opt/islandora/bin/kdu_compress
-#
-ln -s $ISLANDORA_PKGS/adore-djatoka-1.1/bin/Linux-x86-64/kdu_compress /usr/bin/kdu_compress
-ln -s $ISLANDORA_PKGS/adore-djatoka-1.1/bin/Linux-x86-64/kdu_expand /usr/bin/kdu_expand
+if [ $DJATOKA_VERSION == "adore" ]; then
+  #
+  # Make sure fedora is stopped
+  #
+  service fedora start
+  #
+  ## Adore Djatoka install
+  #
+  cd $SRC_DIR
+  wget -N -P $SRC_DIR http://downloads.sourceforge.net/project/djatoka/djatoka/1.1/adore-djatoka-1.1.tar.gz
+  tar -zxvf adore-djatoka-1.1.tar.gz -C $ISLANDORA_PKGS
+  chown -R $FEDORA_USER:$FEDORA_USER $ISLANDORA_PKGS/adore-djatoka-1.1
+  cp $ISLANDORA_PKGS/adore-djatoka-1.1/dist/adore-djatoka.war $CATALINA_HOME/webapps/
+  # wait for tomcat to load it
+  sleep 60
+  cp $ISLANDORA_PKGS/adore-djatoka-1.1/dist/adore-djatoka-1.1.jar ${FEDORA_HOME}/tomcat/webapps/adore-djatoka/WEB-INF/lib/
+  #
+  # update djatoka test page settings
+  #
+  # sed out localhost from $CATALINA_HOME/webapps/adore-djatoka/index.html to servername
+  sed -i "s|localhost|$SERVER_FULL_NAME|g" $CATALINA_HOME/webapps/adore-djatoka/index.html
+  #
+  # link Djatoka binaries to /usr/bin
+  # needed to do this in order to enable the module for Large Image Collection.
+  # Then I in the module for the path I could change it to /opt/islandora/bin/kdu_compress
+  #
+  ln -s $ISLANDORA_PKGS/adore-djatoka-1.1/bin/Linux-x86-64/kdu_compress /usr/bin/kdu_compress
+  ln -s $ISLANDORA_PKGS/adore-djatoka-1.1/bin/Linux-x86-64/kdu_expand /usr/bin/kdu_expand
+  #
+  # update logging
+  #
+  mv $CATALINA_HOME/webapps/adore-djatoka/WEB-INF/classes/log4j.properties $CATALINA_HOME/webapps/adore-djatoka/WEB-INF/classes/log4j.properties-orig
+  sed -i "s|FEDORA_HOME_TO_CHANGE|$FEDORA_HOME|g" ../etc/log4j.properties-djatoka
+  cp ../etc/log4j.properties-djatoka $CATALINA_HOME/webapps/adore-djatoka/WEB-INF/classes/log4j.properties
+  #
+  # install updated tomcat startup for Djatoka
+  #
+  mv ${FEDORA_HOME}/tomcat/bin/startup.sh ${FEDORA_HOME}/tomcat/bin/startup.sh-orig
+  cp ../etc/startup.sh-tomcat ${FEDORA_HOME}/tomcat/bin/startup.sh
+  chmod 755 ${FEDORA_HOME}/tomcat/bin/startup.sh
+  mv $ISLANDORA_PKGS/adore-djatoka-1.1/bin/env.sh $ISLANDORA_PKGS/adore-djatoka-1.1/bin/env.sh-orig
+  cp $ISLANDORA_HOME/etc/adore-djatoka-env.sh $ISLANDORA_PKGS/adore-djatoka-1.1/bin/env.sh
+fi
 
-#
-# update logging
-#
-mv $CATALINA_HOME/webapps/adore-djatoka/WEB-INF/classes/log4j.properties $CATALINA_HOME/webapps/adore-djatoka/WEB-INF/classes/log4j.properties-orig
-sed -i "s|FEDORA_HOME_TO_CHANGE|$FEDORA_HOME|g" ../etc/log4j.properties-djatoka
-cp ../etc/log4j.properties-djatoka $CATALINA_HOME/webapps/adore-djatoka/WEB-INF/classes/log4j.properties
-#
-# install updated tomcat startup for Djatoka
-#
-mv ${FEDORA_HOME}/tomcat/bin/startup.sh ${FEDORA_HOME}/tomcat/bin/startup.sh-orig
-cp ../etc/startup.sh-tomcat ${FEDORA_HOME}/tomcat/bin/startup.sh
-chmod 755 ${FEDORA_HOME}/tomcat/bin/startup.sh
-mv $ISLANDORA_PKGS/adore-djatoka-1.1/bin/env.sh $ISLANDORA_PKGS/adore-djatoka-1.1/bin/env.sh-orig
-cp $ISLANDORA_HOME/etc/adore-djatoka-env.sh $ISLANDORA_PKGS/adore-djatoka-1.1/bin/env.sh
+if [ $DJATOKA_VERSION == "freelib" ]; then
+  cd $INSTALL_PREFIX
+  git clone https://github.com/ksclarke/freelib-djatoka.git
+  cd freelib-djatoka
+  mvn install
+  cp etc/init.d/djatoka /etc/init.d/djatoka
+  chkconfig --add djatoka
+  chkconfig djatoka on
+fi
 
