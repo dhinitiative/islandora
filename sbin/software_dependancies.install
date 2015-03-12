@@ -33,6 +33,7 @@ yum -y install automake
 yum -y installl libtool
 yum -y install make
 yum -y install nasm
+yum -y install yasm
 yum -y install pkgconfig
 yum -y install zlib-devel
 yum -y install java-1.6.0-openjdk.x86_64
@@ -85,15 +86,15 @@ chmod 775 /opt
 	mkdir ffmpeg_sources
 	cd ffmpeg_sources
 	#
-	# install Yasm
+	# install Yasm (install via yum above)
 	#
-	git clone --depth 1 git://github.com/yasm/yasm.git
-	cd yasm
-	autoreconf -fiv
-	./configure --prefix=$ISLANDORA_PKGS/ffmpeg --bindir="$ISLANDORA_PKGS/ffmpeg/bin"
-	make
-	make install
-	make distclean
+	#git clone --depth 1 git://github.com/yasm/yasm.git
+	#cd yasm
+	#autoreconf -fiv
+	#./configure --prefix=$ISLANDORA_PKGS/ffmpeg --bindir="$ISLANDORA_PKGS/ffmpeg/bin"
+	#make
+	#make install
+	#make distclean
 	#
 	# Install libx264
 	#
