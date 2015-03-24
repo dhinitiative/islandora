@@ -14,7 +14,7 @@
 
 
 #
-## Install DuraSpace's Cloudsync tomat app
+## Install DuraSpace's tomat app
 #
 #
 # Source environment
@@ -22,17 +22,40 @@
 . ../etc/database.sh
 
 #
-# install Cloudsync 1.0
+# Install Duracloud
 #
 cd $SRC_DIR
-wget -N -P $SRC_DIR http://repo1.maven.org/maven2/org/duraspace/fcrepo-cloudsync/fcrepo-cloudsync-service/1.1.0/fcrepo-cloudsync-service-1.1.0.war
-chown -R $FEDORA_USER:$FEDORA_USER fcrepo-cloudsync-service-1.1.0.war
-mv fcrepo-cloudsync-service-1.1.0.war cloudsync.war
-mkdir $INSTALL_PREFIX/cloudsync
-chown -R $FEDORA_USER:$FEDORA_USER $INSTALL_PREFIX/cloudsync
-mv cloudsync.war ${FEDORA_HOME}/tomcat/webapps
-sleep 10   # wait for war to load in fedora
-echo "cloudsync.home = $INSTALL_PREFIX/cloudsync" >> $CATALINA_HOME/webapps/cloudsync/WEB-INF/classes/cloudsync.properties
+mkdir -p duracloud
+wget -N -P $SRC_DIR/duracloud http://docs.duraspace.org/duracloud/3.2.0/downloads/installation-package-3.2.0.zip
+cd duracloud
+unzip installation-package-3.2.0.zip
+chown -R $FEDORA_USER:$FEDORA_USER $SRC_DIR/duracloud
+cp duraboss.war duradmin.war durastore.war ${CATALINA_HOME}/webapps/
+#
+# Configure duracloud
+#
+# to-do figure out settings
+sed -i "s|[host]|localhost|g" $SRC_DIR/duracloud/init.properties
+#java -jar app-config.jar init.properties
+#
+echo "" >> /etc/motd
+echo "Configure Duracloud:"  >> /etc/motd
+echo "cd ${SRC_DIR}/duracloud/" >> /etc/motd
+echo "edit the init.properties for your installation" >> /etc/motd
+echo "java -jar app-config.jar init.properties" >> /etc/motd
+echo "" >> /etc/motd
+#
+# install Cloudsync 1.0 (unsupported fedora cloudsync tool)
+#
+#cd $SRC_DIR
+#wget -N -P $SRC_DIR http://repo1.maven.org/maven2/org/duraspace/fcrepo-cloudsync/fcrepo-cloudsync-service/1.1.0/fcrepo-cloudsync-service-1.1.0.war
+#chown -R $FEDORA_USER:$FEDORA_USER fcrepo-cloudsync-service-1.1.0.war
+#mv fcrepo-cloudsync-service-1.1.0.war cloudsync.war
+#mkdir $INSTALL_PREFIX/cloudsync
+#chown -R $FEDORA_USER:$FEDORA_USER $INSTALL_PREFIX/cloudsync
+#mv cloudsync.war ${FEDORA_HOME}/tomcat/webapps
+#sleep 10   # wait for war to load in fedora
+#echo "cloudsync.home = $INSTALL_PREFIX/cloudsync" >> $CATALINA_HOME/webapps/cloudsync/WEB-INF/classes/cloudsync.properties
 
 #
 # Install Duracloud Sync Tool 3.2.1
