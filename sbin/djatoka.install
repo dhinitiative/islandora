@@ -37,7 +37,7 @@ if [ $DJATOKA_VERSION == "adore" ]; then
   cp $ISLANDORA_PKGS/adore-djatoka-1.1/dist/adore-djatoka.war $CATALINA_HOME/webapps/
   # wait for tomcat to load it
   sleep 60
-  cp $ISLANDORA_PKGS/adore-djatoka-1.1/dist/adore-djatoka-1.1.jar ${FEDORA_HOME}/tomcat/webapps/adore-djatoka/WEB-INF/lib/
+  cp -f $ISLANDORA_PKGS/adore-djatoka-1.1/dist/adore-djatoka-1.1.jar ${FEDORA_HOME}/tomcat/webapps/adore-djatoka/WEB-INF/lib/
   #
   # update djatoka test page settings
   #
