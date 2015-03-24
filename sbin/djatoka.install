@@ -30,7 +30,8 @@ if [ $DJATOKA_VERSION == "adore" ]; then
   ## Adore Djatoka install
   #
   cd $SRC_DIR
-  wget -N -P $SRC_DIR http://downloads.sourceforge.net/project/djatoka/djatoka/1.1/adore-djatoka-1.1.tar.gz
+  #wget -N -P $SRC_DIR http://downloads.sourceforge.net/project/djatoka/djatoka/1.1/adore-djatoka-1.1.tar.gz
+  wget --no-check-certificate https://hpc.hamilton.edu/adore-djatoka-1.1.tar.gz
   tar -zxvf adore-djatoka-1.1.tar.gz -C $ISLANDORA_PKGS
   chown -R $FEDORA_USER:$FEDORA_USER $ISLANDORA_PKGS/adore-djatoka-1.1
   cp $ISLANDORA_PKGS/adore-djatoka-1.1/dist/adore-djatoka.war $CATALINA_HOME/webapps/
