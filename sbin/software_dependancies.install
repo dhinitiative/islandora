@@ -35,16 +35,6 @@ yum -y install make
 yum -y install nasm
 yum -y install pkgconfig
 yum -y install zlib-devel
-yum -y install java-1.6.0-openjdk.x86_64
-if [ $DJATOKA_VERSION == "freelib" ]; then
-	yum -y install java-1.8.0
-fi
-if [ $DJATOKA_VERSION == "adore-src" ]; then
-	yum -y install java-1.7.0
-fi
-if [ $DJATOKA_VERSION == "adore" ]; then
-	yum -y install java-1.7.0
-fi
 yum -y install ImageMagick
 yum -y install ghostscript
 yum -y install ant
@@ -64,6 +54,25 @@ echo "" >> /etc/motd
 #
 #chmod 775 $INSTALL_PREFIX # change below to this but need to have INSTALL_PREFIX in env.sh first
 chmod 775 /opt
+
+#
+# Install Java
+#
+cd $INSTALL_PREFIX
+wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/8u40-b26/server-jre-8u40-linux-x64.tar.gz"
+tar -zxvf server-jre-8u40-linux-x64.tar.gz
+cd ${INSTALL_DIR}
+ln -s jdk1.8.0_40 java
+#yum -y install java-1.6.0-openjdk.x86_64
+#if [ $DJATOKA_VERSION == "freelib" ]; then
+#	yum -y install java-1.8.0
+#fi
+#if [ $DJATOKA_VERSION == "adore-src" ]; then
+#	yum -y install java-1.7.0
+#fi
+#if [ $DJATOKA_VERSION == "adore" ]; then
+#	yum -y install java-1.7.0
+#fi
 
 
 #if [ $INSTALL_ISLANDORA == "Yes" ]; then
