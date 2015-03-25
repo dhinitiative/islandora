@@ -84,6 +84,11 @@ cp ../etc/fgsconfig-basic.properties-$GSEARCH_VERSION $FEDORA_HOME/tomcat/webapp
 # build config
 #
 cd $FEDORA_HOME/tomcat/webapps/fedoragsearch/FgsConfig/
+#
+# unset the JAVA home which is set for jdk-1.8 which then allows this to run as the system java 1.6 
+# ant wont build with oracle java 1.8. 
+unset JAVA_HOME
+unset JRE_HOME
 ant -f fgsconfig-basic.xml
 chown -R $FEDORA_USER:$FEDORA_USER $FEDORA_HOME
 
