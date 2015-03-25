@@ -61,7 +61,7 @@ chmod 775 /opt
 cd $INSTALL_PREFIX
 wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/8u40-b26/server-jre-8u40-linux-x64.tar.gz"
 tar -zxvf server-jre-8u40-linux-x64.tar.gz
-cd ${INSTALL_DIR}
+cd $INSTALL_PREFIX
 ln -s jdk1.8.0_40 java
 #yum -y install java-1.6.0-openjdk.x86_64
 #if [ $DJATOKA_VERSION == "freelib" ]; then
