@@ -63,6 +63,7 @@ wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2F
 tar -zxvf server-jre-8u40-linux-x64.tar.gz
 cd $INSTALL_PREFIX
 ln -s jdk1.8.0_40 java
+alternatives --install /usr/bin/java java /opt/jdk1.8.0_40/bin/java 3
 #yum -y install java-1.6.0-openjdk.x86_64
 #if [ $DJATOKA_VERSION == "freelib" ]; then
 #	yum -y install java-1.8.0
