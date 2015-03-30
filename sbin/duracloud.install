@@ -37,9 +37,14 @@ chown -R $FEDORA_USER:$FEDORA_USER $INSTALL_PREFIX/duracloud
 #
 echo "#!/bin/bash" > /etc/cron.daily/duracloud-sync
 echo "" >> /etc/cron.daily/duracloud-sync
-echo "java -jar $INSTALL_PREFIX/duracloud/duracloudsync-3.2.1.jar -x -c <DIR_TO_BACKUP> -h <HOST.duracloud.org> -s <SOURCE-DIR> -u <USER> -p <PASSWORD> >> ${FEDORA_HOME}/server/logs/duracloud-sync.log 2>&1" >> /etc/cron.daily/duracloud-sync
+echo "java -jar $INSTALL_PREFIX/duracloud/duracloudsync-3.2.1.jar -t 3 -x -c <DIR_TO_BACKUP> -h <HOST.duracloud.org> -s <SOURCE-DIR> -u <USER> -p <PASSWORD> >> ${FEDORA_HOME}/server/logs/duracloud-sync.log 2>&1" >> /etc/cron.daily/duracloud-sync
 echo "" >> /etc/motd
-echo "Also update daily cron with credentials for the CloudSync Tool (/etc/cron.daily/duracloud-sync)." >> /etc/motd
+echo "Update daily cron with credentials for the CloudSync Tool (/etc/cron.daily/duracloud-sync)." >> /etc/motd
+echo "" >> /etc/motd
+echo "Run Sync Optimize tool to figure out the best number of threads" >> /etc/motd
+echo "java -jar $INSTALL_PREFIX/duracloud/syncoptimize-3.2.0-driver.jar -h <host>.duracloud.org -s <space> -u <user> -p <pass>"
+echo "then update -t 3 from /etc/cron.daily/duracloud-sync with this new number" >> /etc/motd
+echo "" >> /etc/motd
 #
 # Make sure to rotate the logs too
 #
