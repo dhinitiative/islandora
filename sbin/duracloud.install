@@ -32,6 +32,9 @@ wget -N -P $SRC_DIR http://docs.duraspace.org/duracloud/3.2.0/downloads/syncopti
 mkdir -p $INSTALL_PREFIX/duracloud
 mv *.jar $INSTALL_PREFIX/duracloud
 chown -R $FEDORA_USER:$FEDORA_USER $INSTALL_PREFIX/duracloud
+cd $INSTALL_PREFIX/duracloud
+ln -s $FEDORA_HOME/server/logs logs
+ln -s duracloudsync-3.2.1 duracloudsync.jar
 #
 # configure it to run from cron
 #
