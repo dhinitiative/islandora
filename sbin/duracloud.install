@@ -41,7 +41,7 @@ ln -s duracloudsync-3.2.1 duracloudsync.jar
 echo "#!/bin/bash" > /etc/cron.daily/duracloud-sync
 echo "" >> /etc/cron.daily/duracloud-sync
 echo "Starting on:  `date`" >> ${FEDORA_HOME}/server/logs/duracloud-sync.log
-echo "java -jar $INSTALL_PREFIX/duracloud/duracloudsync-3.2.1.jar -t 3 -x -c <DIR_TO_BACKUP> -h <HOST.duracloud.org> -s <SOURCE-DIR> -u <USER> -p <PASSWORD> >> ${FEDORA_HOME}/server/logs/duracloud-sync.log 2>&1" >> /etc/cron.daily/duracloud-sync
+echo "java -jar $INSTALL_PREFIX/duracloud/duracloudsync-3.2.1.jar -x -t 3 -c <DIR_TO_BACKUP> -h <HOST.duracloud.org> -s <SOURCE-DIR> -u <USER> -p <PASSWORD> >> ${FEDORA_HOME}/server/logs/duracloud-sync.log 2>&1" >> /etc/cron.daily/duracloud-sync
 echo "Complete on:  `date`" >> ${FEDORA_HOME}/server/logs/duracloud-sync.log
 echo "" >> /etc/motd
 echo "Update daily cron with credentials for the CloudSync Tool (/etc/cron.daily/duracloud-sync)." >> /etc/motd
@@ -53,7 +53,7 @@ echo "" >> /etc/motd
 #
 # Make sure to rotate the logs too
 #
-echo "$FEDORA_HOME/server/logs/duracloud-sync.log {" >> /etc/logrotate.d/duracloud-sync
+echo "$FEDORA_HOME/server/logs/duracloud-sync.log {" > /etc/logrotate.d/duracloud-sync
 echo "  weekly" >> /etc/logrotate.d/duracloud-sync
 echo "  missingok" >> /etc/logrotate.d/duracloud-sync
 echo "  notifempty" >> /etc/logrotate.d/duracloud-sync
