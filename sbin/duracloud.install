@@ -30,7 +30,9 @@ wget -N -P $SRC_DIR http://docs.duraspace.org/duracloud/3.2.1/downloads/duraclou
 wget -N -P $SRC_DIR http://docs.duraspace.org/duracloud/3.2.0/downloads/retrievaltool-3.2.0-driver.jar
 wget -N -P $SRC_DIR http://docs.duraspace.org/duracloud/3.2.0/downloads/syncoptimize-3.2.0-driver.jar
 mkdir -p $INSTALL_PREFIX/duracloud
-mv *.jar $INSTALL_PREFIX/duracloud
+mv duracloudsync-3.2.1.jar $INSTALL_PREFIX/duracloud
+mv retrievaltool-3.2.0-driver.jar $INSTALL_PREFIX/duracloud
+mv syncoptimize-3.2.0-driver.jar $INSTALL_PREFIX/duracloud
 chown -R $FEDORA_USER:$FEDORA_USER $INSTALL_PREFIX/duracloud
 cd $INSTALL_PREFIX/duracloud
 ln -s $FEDORA_HOME/server/logs logs
