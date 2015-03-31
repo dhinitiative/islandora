@@ -34,7 +34,7 @@ mv *.jar $INSTALL_PREFIX/duracloud
 chown -R $FEDORA_USER:$FEDORA_USER $INSTALL_PREFIX/duracloud
 cd $INSTALL_PREFIX/duracloud
 ln -s $FEDORA_HOME/server/logs logs
-ln -s duracloudsync-3.2.1 duracloudsync.jar
+ln -s duracloudsync-3.2.1.jar duracloudsync.jar
 #
 # configure it to run from cron
 #
