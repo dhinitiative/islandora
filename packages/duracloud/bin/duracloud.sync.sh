@@ -2,6 +2,8 @@
    
 . ../etc/duracloud.config
 
+echo "Starting on:  `date` >> $DURACLOUD_HOME/logs/duracloud-sync.log" 
+
 java -jar ${DURACLOUD_HOME}/lib/duracloudsync-3.2.1.jar -x \
 -t ${DURACLOUD_THREADS} \
 -c ${DURACLOUD_CONTENT} \
@@ -9,3 +11,5 @@ java -jar ${DURACLOUD_HOME}/lib/duracloudsync-3.2.1.jar -x \
 -h ${DURACLOUD_HOST} \
 -s ${DURACLOUD_SPACE} \
 -u ${DURACLOUD_USER} >> ${DURACLOUD_HOME}/logs/duracloud-sync.log 2>&1 &
+
+echo "Finished on:  `date` >> $DURACLOUD_HOME/logs/duracloud-sync.log" 
