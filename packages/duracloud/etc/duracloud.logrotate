@@ -1,0 +1,9 @@
+/opt/duracloud/logs/duracloud-*.log {
+    weekly
+    missingok
+    notifempty
+    sharedscripts
+    rotate 2
+    compress
+    endscript
+}
