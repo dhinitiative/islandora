@@ -26,10 +26,6 @@
 # Install Duracloud Sync Tool
 #
 cp -r $INSTALL_PREFIX/islandora/packages/duracloud $INSTALL_PREFIX
-mkdir -p $INSTALL_PREFIX/duracloud
-mkdir -p $INSTALL_PREFIX/duracloud/etc
-mkdir -p $INSTALL_PREFIX/duracloud/bin
-mkdir -p $INSTALL_PREFIX/duracloud/lib
 mkdir -p /var/duracloud/duracloud-sync-work
 wget -N -P $INSTALL_PREFIX/duracloud/lib http://docs.duraspace.org/duracloud/3.2.1/downloads/duracloudsync-3.2.1.jar
 wget -N -P $INSTALL_PREFIX/duracloud/lib http://docs.duraspace.org/duracloud/3.2.0/downloads/retrievaltool-3.2.0-driver.jar
@@ -41,6 +37,8 @@ ln -s /var/duracloud/duracloud-sync-work duracloud-sync-work
 #
 # configure it to run from cron
 #
+cp $INSTALL_PREFIX/duracloud/etc/duracloudsync.cron-daily /etc/cron.daily/duracloudsync
+
 echo "#!/bin/bash" > /etc/cron.daily/duracloud-sync
 echo "" >> /etc/cron.daily/duracloud-sync
 echo "Starting on:  `date` >> $INSTALL_PREFIX/duracloud/logs/duracloud-sync.log"
