@@ -44,6 +44,8 @@ cp $INSTALL_PREFIX/duracloud/etc/duracloudsync.cron-daily /etc/cron.daily/duracl
 #
 echo "" >> /etc/motd
 echo "Update $INSTALL_PREFIX/duracloud/etc/duracloud.config with credentials for Duracloud." >> /etc/motd
+echo "add the Duracloud password to $INSTALL_PREFIX/duracloud/etc/duracloud.pass ...."
+echo "echo "<PASSWORD> > $INSTALL_PREFIX/duracloud/etc/duracloud.pass;chmod 400 $INSTALL_PREFIX/duracloud/etc/duracloud.pass""
 echo "" >> /etc/motd
 echo "Run Duracloud Sync Optimize tool to figure out the best number of threads" >> /etc/motd
 echo "$INSTALL_PREFIX/duracloud/bin/duracloud-optimize.sh"
