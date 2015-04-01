@@ -28,15 +28,16 @@
 mkdir -p $INSTALL_PREFIX/duracloud
 mkdir -p $INSTALL_PREFIX/duracloud/etc
 mkdir -p $INSTALL_PREFIX/duracloud/bin
+mkdir -p $INSTALL_PREFIX/duracloud/lib
 mkdir -p /var/duracloud/duracloud-sync-work
-wget -N -P $INSTALL_PREFIX/duracloud/bin http://docs.duraspace.org/duracloud/3.2.1/downloads/duracloudsync-3.2.1.jar
-wget -N -P $INSTALL_PREFIX/duracloud/bin http://docs.duraspace.org/duracloud/3.2.0/downloads/retrievaltool-3.2.0-driver.jar
-wget -N -P $INSTALL_PREFIX/duracloud/bin_DIR http://docs.duraspace.org/duracloud/3.2.0/downloads/syncoptimize-3.2.0-driver.jar
+wget -N -P $INSTALL_PREFIX/duracloud/lib http://docs.duraspace.org/duracloud/3.2.1/downloads/duracloudsync-3.2.1.jar
+wget -N -P $INSTALL_PREFIX/duracloud/lib http://docs.duraspace.org/duracloud/3.2.0/downloads/retrievaltool-3.2.0-driver.jar
+wget -N -P $INSTALL_PREFIX/duracloud/lib http://docs.duraspace.org/duracloud/3.2.0/downloads/syncoptimize-3.2.0-driver.jar
 chown -R $FEDORA_USER:$FEDORA_USER $INSTALL_PREFIX/duracloud
 cd $INSTALL_PREFIX/duracloud
 ln -s $FEDORA_HOME/server/logs logs
 ln -s /var/duracloud/duracloud-sync-work duracloud-sync-work
-cd bin
+cd $INSTALL_PREFIX/duracloud/lib
 ln -s duracloudsync-3.2.1.jar duracloudsync.jar
 #
 # configure it to run from cron
@@ -44,13 +45,13 @@ ln -s duracloudsync-3.2.1.jar duracloudsync.jar
 echo "#!/bin/bash" > /etc/cron.daily/duracloud-sync
 echo "" >> /etc/cron.daily/duracloud-sync
 echo "Starting on:  `date` >> $INSTALL_PREFIX/duracloud/logs/duracloud-sync.log"
-echo "java -jar $INSTALL_PREFIX/duracloud/bin/duracloudsync.jar -x -t 3 -c <DIR_TO_BACKUP> -w $INSTALL_PREFIX/duracloud/duracloud-sync-work -h <HOST.duracloud.org> -s <SOURCE-DIR> -u <USER> -p <PASSWORD> >> ${FEDORA_HOME}/server/logs/duracloud-sync.log 2>&1" >> /etc/cron.daily/duracloud-sync
+echo "java -jar $INSTALL_PREFIX/duracloud/lib/duracloudsync.jar -x -t 3 -c <DIR_TO_BACKUP> -w $INSTALL_PREFIX/duracloud/duracloud-sync-work -h <HOST.duracloud.org> -s <SOURCE-DIR> -u <USER> -p <PASSWORD> >> ${FEDORA_HOME}/server/logs/duracloud-sync.log 2>&1" >> /etc/cron.daily/duracloud-sync
 echo "Complete on:  `date` >> $INSTALL_PREFIX/duracloud/logs/duracloud-sync.log"
 echo "" >> /etc/motd
 echo "Update daily cron with credentials for the CloudSync Tool (/etc/cron.daily/duracloud-sync)." >> /etc/motd
 echo "" >> /etc/motd
 echo "Run Sync Optimize tool to figure out the best number of threads" >> /etc/motd
-echo "java -jar $INSTALL_PREFIX/duracloud/bin/syncoptimize-3.2.0-driver.jar -h <host>.duracloud.org -s <space> -u <user> -p <pass>"
+echo "java -jar $INSTALL_PREFIX/duracloud/lib/syncoptimize-3.2.0-driver.jar -h <host>.duracloud.org -s <space> -u <user> -p <pass>"
 echo "then update -t 3 from /etc/cron.daily/duracloud-sync with this new number" >> /etc/motd
 echo "" >> /etc/motd
 #
