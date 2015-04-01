@@ -39,56 +39,23 @@ ln -s /var/duracloud/duracloud-sync-work duracloud-sync-work
 #
 cp $INSTALL_PREFIX/duracloud/etc/duracloudsync.cron-daily /etc/cron.daily/duracloudsync
 
-echo "#!/bin/bash" > /etc/cron.daily/duracloud-sync
-echo "" >> /etc/cron.daily/duracloud-sync
-echo "Starting on:  `date` >> $INSTALL_PREFIX/duracloud/logs/duracloud-sync.log"
-echo "java -jar $INSTALL_PREFIX/duracloud/lib/duracloudsync.jar -x -t 3 -c <DIR_TO_BACKUP> -w $INSTALL_PREFIX/duracloud/duracloud-sync-work -h <HOST.duracloud.org> -s <SOURCE-DIR> -u <USER> -p <PASSWORD> >> ${FEDORA_HOME}/server/logs/duracloud-sync.log 2>&1" >> /etc/cron.daily/duracloud-sync
-echo "Complete on:  `date` >> $INSTALL_PREFIX/duracloud/logs/duracloud-sync.log"
+#
+# update motd to finish duracloud installation
+#
 echo "" >> /etc/motd
-echo "Update daily cron with credentials for the CloudSync Tool (/etc/cron.daily/duracloud-sync)." >> /etc/motd
+echo "Update $INSTALL_PREFIX/duracloud/etc/duracloud.config with credentials for Duracloud." >> /etc/motd
 echo "" >> /etc/motd
-echo "Run Sync Optimize tool to figure out the best number of threads" >> /etc/motd
-echo "java -jar $INSTALL_PREFIX/duracloud/lib/syncoptimize-3.2.0-driver.jar -h <host>.duracloud.org -s <space> -u <user> -p <pass>"
-echo "then update -t 3 from /etc/cron.daily/duracloud-sync with this new number" >> /etc/motd
+echo "Run Duracloud Sync Optimize tool to figure out the best number of threads" >> /etc/motd
+echo "$INSTALL_PREFIX/duracloud/bin/duracloud-optimize.sh"
+echo "then update DURACLOUD_THREADS in $INSTALL_PREFIX/duracloud/etc/duracloud.config with this new number" >> /etc/motd
 echo "" >> /etc/motd
 #
 # Make sure to rotate the logs too
 #
-echo "$FEDORA_HOME/server/logs/duracloud-sync.log {" > /etc/logrotate.d/duracloud-sync
-echo "  weekly" >> /etc/logrotate.d/duracloud-sync
-echo "  missingok" >> /etc/logrotate.d/duracloud-sync
-echo "  notifempty" >> /etc/logrotate.d/duracloud-sync
-echo "  sharedscripts" >> /etc/logrotate.d/duracloud-sync
-echo "  rotate 5" >> /etc/logrotate.d/duracloud-sync
-echo "  compress" >> /etc/logrotate.d/duracloud-sync
-echo "  endscript" >> /etc/logrotate.d/duracloud-sync
-echo "}" >> /etc/logrotate.d/duracloud-sync
+cp $INSTALL_PREFIX/duracloud/etc/duracloudsync.logrotate /etc/logrotate.d/duracloud
 
 #
-# Install Duracloud
-#
-#cd $SRC_DIR
-#mkdir -p duracloud
-#wget -N -P $SRC_DIR/duracloud http://docs.duraspace.org/duracloud/3.2.0/downloads/installation-package-3.2.0.zip
-#cd duracloud
-#unzip installation-package-3.2.0.zip
-#chown -R $FEDORA_USER:$FEDORA_USER $SRC_DIR/duracloud
-#cp duraboss.war duradmin.war durastore.war ${CATALINA_HOME}/webapps/
-#
-# Configure duracloud
-#
-# to-do figure out settings
-#sed -i "s|[host]|localhost|g" $SRC_DIR/duracloud/init.properties
-#java -jar app-config.jar init.properties
-#
-#echo "" >> /etc/motd
-#echo "Configure Duracloud:"  >> /etc/motd
-#echo "cd ${SRC_DIR}/duracloud/" >> /etc/motd
-#echo "edit the init.properties for your installation" >> /etc/motd
-#echo "java -jar app-config.jar init.properties" >> /etc/motd
-#echo "" >> /etc/motd
-#
-# install Cloudsync 1.0 (unsupported fedora cloudsync tool)
+# install Fedora Cloudsync 1.0 (unsupported fedora cloudsync tool)
 #
 #cd $SRC_DIR
 #wget -N -P $SRC_DIR http://repo1.maven.org/maven2/org/duraspace/fcrepo-cloudsync/fcrepo-cloudsync-service/1.1.0/fcrepo-cloudsync-service-1.1.0.war
