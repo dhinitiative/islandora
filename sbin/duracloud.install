@@ -53,7 +53,11 @@ echo "" >> /etc/motd
 # Make sure to rotate the logs too
 #
 cp $INSTALL_PREFIX/duracloud/etc/duracloudsync.logrotate /etc/logrotate.d/duracloud
-
+#
+# set permissions
+#
+chown -R ${FEDORA_USER}:${FEDORA_USER} $INSTALL_PREFIX/duracloud
+chmod 400 $INSTALL_PREFIX/duracloud/etc/duracloud.pass
 #
 # install Fedora Cloudsync 1.0 (unsupported fedora cloudsync tool)
 #
