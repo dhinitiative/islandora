@@ -4,7 +4,7 @@
 
 echo "Starting on:  `date`" >> $DURACLOUD_HOME/logs/duracloud-sync.log
 
-java -jar ${DURACLOUD_HOME}/lib/duracloudsync-3.2.1.jar -x \
+java -jar ${DURACLOUD_HOME}/lib/duracloudsync-3.2.1.jar -x -d \
 -t ${DURACLOUD_THREADS} \
 -c ${DURACLOUD_CONTENT} \
 -e ${DURACLOUD_EXCLUDE} \
