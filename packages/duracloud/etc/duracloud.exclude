@@ -1,1 +1,4 @@
-
+/opt/fedora/data/activemq-data
+/opt/duracloud
+KahaDB
+db-?.log
