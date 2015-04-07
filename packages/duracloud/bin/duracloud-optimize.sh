@@ -2,7 +2,7 @@
    
 . ../etc/duracloud.config
 
-echo "Starting on:  `date`" | tee $DURACLOUD_HOME/logs/duracloud-optimize.log
+echo "Starting on:  `date`" >> $DURACLOUD_HOME/logs/duracloud-optimize.log
 
 
 java -jar ${DURACLOUD_HOME}/lib/syncoptimize-3.2.0-driver.jar \
@@ -11,4 +11,4 @@ java -jar ${DURACLOUD_HOME}/lib/syncoptimize-3.2.0-driver.jar \
 -u ${DURACLOUD_USER} 2>&1 | tee $DURACLOUD_HOME/logs/duracloud-optimize.log
 
 
-echo "Finished on:  `date`" | tee $DURACLOUD_HOME/logs/duracloud-optimize.log
+echo "Finished on:  `date`" >> $DURACLOUD_HOME/logs/duracloud-optimize.log
