@@ -11,6 +11,6 @@ java -jar ${DURACLOUD_HOME}/lib/duracloudsync-3.2.1.jar -x -d \
 -w ${DURACLOUD_WORK}/duracloud-sync-work \
 -h ${DURACLOUD_HOST} \
 -s ${DURACLOUD_SPACE} \
--u ${DURACLOUD_USER} >> ${DURACLOUD_HOME}/logs/duracloud-sync.log 2>&1 | tee $DURACLOUD_HOME/logs/duracloud-sync.log
+-u ${DURACLOUD_USER}  2>&1 | tee $DURACLOUD_HOME/logs/duracloud-sync.log
 
 echo "Finished on:  `date`" | tee $DURACLOUD_HOME/logs/duracloud-sync.log
