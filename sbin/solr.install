@@ -80,9 +80,8 @@ if [ $SOLR_VERSION == "4.2.0" ]; then
   sed -i "s/localhost/$SERVER_FULL_NAME/g" basic-solr-config/index.properties
   rm basic-solr-config/README.md
   chown -R $FEDORA_USER:$FEDORA_USER basic-solr-config
-  cp foxmlToSolr.xslt ${CATALINA_HOME}/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/
-  cp -r islandora_transforms ${CATALINA_HOME}/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/
-  #rsync -var basic-solr-config/ $SOLR_HOME/collection1/
+  cp basic-solr-config/foxmlToSolr.xslt ${CATALINA_HOME}/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/
+  cp -r basic-solr-config/islandora_transforms ${CATALINA_HOME}/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/
 fi
 #
 # install web.xml
