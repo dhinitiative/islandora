@@ -60,7 +60,7 @@ cp $INSTALL_PREFIX/duracloud/etc/duracloudsync.logrotate /etc/logrotate.d/duracl
 #
 chown -R ${FEDORA_USER}:${FEDORA_USER} $INSTALL_PREFIX/duracloud
 chmod 400 $INSTALL_PREFIX/duracloud/etc/duracloud.pass
-chmod 755 $INSTALL_PREFIX/duracloud/bin/*.sh
+chmod 755 $INSTALL_PREFIX/duracloud/bin/*
 #
 # install Fedora Cloudsync 1.0 (unsupported fedora cloudsync tool)
 #
