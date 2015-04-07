@@ -3,7 +3,7 @@
 . ../etc/duracloud.config
 
 
-echo "Starting on:  `date`" | tee $DURACLOUD_HOME/logs/duracloud-retrieve.log
+echo "Starting on:  `date`" >> $DURACLOUD_HOME/logs/duracloud-retrieve.log
 
 java -jar ${DURACLOUD_HOME}/lib/retrievaltool-3.2.0-driver.jar \
 -t ${DURACLOUD_THREADS} \
@@ -13,4 +13,4 @@ java -jar ${DURACLOUD_HOME}/lib/retrievaltool-3.2.0-driver.jar \
 -s ${DURACLOUD_SPACE} \
 -u ${DURACLOUD_USER} 2>&1 | tee $DURACLOUD_HOME/logs/duracloud-retrieve.log
 
-echo "Finished on:  `date`" | tee $DURACLOUD_HOME/logs/duracloud-retrieve.log
+echo "Finished on:  `date`" >> $DURACLOUD_HOME/logs/duracloud-retrieve.log
