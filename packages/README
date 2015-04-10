@@ -20,7 +20,7 @@ export PACKAGE_DIR_UNCOMPRESSED=$PACKAGE_NAME-$PACKAGE_VERSION
 
 If you place a file called <package-name>.package it will get built using the
 above template to download and build the software. The general process for building
-more software manually goes like this:
+most software manually goes like this:
 
 cd /opt/islandora/src
 wget <URL to .tar.gz file of the software>
