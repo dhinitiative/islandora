@@ -84,6 +84,10 @@ echo "run the command "alternatives --config java" and set it for java 8" >> /et
 	#
 	rpm -ivh http://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
 	#
+	# install epel packages
+	#
+	yum -y install gdisk
+	#
 	# Enable RPM Fusion Repo
 	#
 	rpm -ivh http://download1.rpmfusion.org/free/el/updates/6/i386/rpmfusion-free-release-6-1.noarch.rpm
