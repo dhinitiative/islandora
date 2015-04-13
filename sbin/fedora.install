@@ -47,8 +47,7 @@ if [ $FEDORA_VERSION == "3.5" ]; then
   # Install Fedora Commons 3.5
   #
   ## get software
-  #wget -N -P $SRC_DIR http://downloads.sourceforge.net/fedora-commons/fcrepo-installer-3.5.jar
-  wget -N -P $SRC_DIR https://github.com/fcrepo3/fcrepo/releases/download/v3.8.1-RC2/fcrepo-installer-3.8.1-SNAPSHOT.jar
+  wget -N -P $SRC_DIR http://downloads.sourceforge.net/fedora-commons/fcrepo-installer-3.5.jar
   cd $SRC_DIR
   #
   ## create install.properties
@@ -94,7 +93,8 @@ if [ $FEDORA_VERSION == "3.8" ]; then
   #
  
   ## get software
-  wget -N -P $SRC_DIR http://downloads.sourceforge.net/fedora-commons/fcrepo-installer-3.8.0.jar
+  #wget -N -P $SRC_DIR http://downloads.sourceforge.net/fedora-commons/fcrepo-installer-3.8.0.jar
+  wget -N -P $SRC_DIR https://github.com/fcrepo3/fcrepo/releases/download/v3.8.1-RC2/fcrepo-installer-3.8.1-SNAPSHOT.jar
   cd $SRC_DIR
   #
   ## create install.properties
