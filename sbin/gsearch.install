@@ -90,11 +90,6 @@ cd $FEDORA_HOME/tomcat/webapps/fedoragsearch/FgsConfig/
 unset JAVA_HOME
 unset JRE_HOME
 #
-# modify the gsearch files.. they have hardcoded /usr/local/fedora but we're installing in /opt/fedora
-#
-sed -i 's|\/usr\/local\/fedora|${FEDORA_HOME}|g' ${CATALINA_HOME}/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/foxmlToSolr.xslt  
-sed -i 's|\/usr\/local\/fedora|${FEDORA_HOME}|g' ${CATALINA_HOME}/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms/slurp_all_MODS_to_solr.xslt
-#
 # now build it
 #
 ant -f fgsconfig-basic.xml
@@ -132,3 +127,8 @@ cd dgi_gsearch_extensions
 ${ISLANDORA_HOME}/bin/mvn package
 chown -R $FEDORA_USER:$FEDORA_USER .
 cp target/gsearch_extensions-0.1.1-jar-with-dependencies.jar $CATALINA_HOME/webapps/fedoragsearch/WEB-INF/lib
+#
+# modify the gsearch files.. they have hardcoded /usr/local/fedora but we're installing in /opt/fedora
+#
+sed -i "s|\/usr\/local\/fedora|${FEDORA_HOME}|g" ${CATALINA_HOME}/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/foxmlToSolr.xslt  
+sed -i "s|\/usr\/local\/fedora|${FEDORA_HOME}|g" ${CATALINA_HOME}/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms/slurp_all_MODS_to_solr.xslt
