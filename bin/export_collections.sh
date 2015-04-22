@@ -10,6 +10,7 @@
 EXPORT_DIR=$1
 LOG_FILE=${FEDORA_HOME}/server/logs/fedora-export.log
 
+echo "Starting fedora export on `date`" 2>&1 | tee $LOG_FILE
 echo "Found the following Namespaces:" 2>&1 | tee $LOG_FILE
 echo "" 2>&1 | tee $LOG_FILE
 ${ISLANDORA_HOME}/bin/get_namespaces.sh 2>&1 | tee $LOG_FILE
@@ -28,3 +29,5 @@ do
 	echo "Done exporting $collection" 2>&1 | tee $LOG_FILE
 	echo "" 2>&1 | tee $LOG_FILE
 done
+echo "" 2>&1 | tee $LOG_FILE
+echo "Finished fedora collection export on `date`" 2>&1 | tee $LOG_FILE
