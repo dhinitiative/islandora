@@ -242,6 +242,11 @@ echo "</filter-mapping>" >> $CATALINA_HOME/conf/web.xml
 echo "</web-app>" >> $CATALINA_HOME/conf/web.xml
 
 #
+# change the memory requirements for the fedora client commands
+#
+sed -i 's|-Xms64m|-Xms1024m|g' ${FEDORA_HOME}/client/bin/env-client.sh
+sed -i 's|-Xmx96m|-Xmx2048m|g' ${FEDORA_HOME}/client/bin/env-client.sh
+#
 # set permissions
 # 
 chown -R $FEDORA_USER:$FEDORA_USER $FEDORA_HOME
