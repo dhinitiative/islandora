@@ -44,3 +44,9 @@ chmod -R 640 ${ISLANDORA_HOME}/etc
 chmod 755 ${ISLANDORA_HOME}/etc
 chmod -R 644 ${ISLANDORA_HOME}/etc/env.sh
 
+#
+# modify the gsearch files.. they have hardcoded /usr/local/fedora but we're installing in /opt/fedora
+#
+sed -i "s|\/usr\/local\/fedora|${FEDORA_HOME}|g" ${CATALINA_HOME}/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/foxmlToSolr.xslt  
+sed -i "s|\/usr\/local\/fedora|${FEDORA_HOME}|g" ${CATALINA_HOME}/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms/slurp_all_MODS_to_solr.xslt
+
