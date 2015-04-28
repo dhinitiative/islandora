@@ -8,4 +8,4 @@
 . ../etc/env.sh
 . ../etc/database.sh
 
-${FEDORA_HOME}/client/bin/fedora-find.sh ${FULL_SERVER_NAME} 8080 {$FEDORA_ADMIN_USER} ${FEDORA_ADMIN_PASS} "pid" "$1:*" http | grep pid | awk '{print $2}'
+${FEDORA_HOME}/client/bin/fedora-find.sh ${FULL_SERVER_NAME} 8080 ${FEDORA_ADMIN_USER} ${FEDORA_ADMIN_PASS} "pid" "$1:*" http | grep pid | awk '{print $2}'
