@@ -23,7 +23,7 @@ do
 	mkdir $EXPORT_DIR/$collection 2>&1 | tee $LOG_FILE
 	for pid in `${ISLANDORA_HOME}/bin/find_pids.sh $collection`;
 	do
-		${FEDORA_HOME}/client/bin/fedora-export.sh ${FULL_SERVER_NAME} 8080 ${FEDORA_ADMIN_USER} ${FEDORA_ADMIN_PASS} $collection info:fedora/fedora-system:FOXML-1.1 archive $EXPORT_DIR/$collection http 2>&1 | tee $LOG_FILE
+		${FEDORA_HOME}/client/bin/fedora-export.sh ${FULL_SERVER_NAME}:8080 ${FEDORA_ADMIN_USER} ${FEDORA_ADMIN_PASS} $collection info:fedora/fedora-system:FOXML-1.1 archive $EXPORT_DIR/$collection http 2>&1 | tee $LOG_FILE
 	done
 	echo "" 2>&1 | tee $LOG_FILE
 	echo "Done exporting $collection" 2>&1 | tee $LOG_FILE
