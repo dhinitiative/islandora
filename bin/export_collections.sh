@@ -25,9 +25,18 @@ else
 	for namespace in `cat ${ISLANDORA_HOME}/etc/namespaces.conf`;
 	do
 		collection=`echo $namespace | awk -F: '{print $1}'`
+		echo "" 2>&1 | tee -a $LOG_FILE
 		echo "Exporting Collection: $collection" 2>&1 | tee -a $LOG_FILE
 		echo "" 2>&1 | tee -a $LOG_FILE
-		mkdir $EXPORT_DIR/$collection 2>&1 | tee -a $LOG_FILE
+		if [ -d $EXPORT_DIR/$collection ]
+		then
+			echo -n "Directory $EXPORT_DIR/$collection exists...." 2>&1 | tee -a $LOG_FILE
+		else
+			echo -n "Creating directory $EXPORT_DIR/$collection ...." 2>&1 | tee -a $LOG_FILE
+			mkdir -p $EXPORT_DIR/$collection 2>&1 | tee -a $LOG_FILE
+		fi
+		echo "Done." 2>&1 | tee -a $LOG_FILE
+	
 		for pid in `${ISLANDORA_HOME}/bin/find_pids.sh $collection`;
 		do
 			${FEDORA_HOME}/client/bin/fedora-export.sh ${FULL_SERVER_NAME}:8080 ${FEDORA_ADMIN_USER} ${FEDORA_ADMIN_PASS} $collection info:fedora/fedora-system:FOXML-1.1 archive $EXPORT_DIR/$collection http 2>&1 | tee -a $LOG_FILE
