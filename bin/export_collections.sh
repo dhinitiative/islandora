@@ -16,9 +16,10 @@ then
         echo "***Error: missing export directory argument***" 2>&1 | tee -a $LOG_FILE
         echo "" 2>&1 | tee -a $LOG_FILE
 else
+	echo "" 2>&1 | tee -a $LOG_FILE
 	echo "Starting fedora export on `date`" 2>&1 | tee -a $LOG_FILE
 	echo "Found the following Namespaces:" 2>&1 | tee -a $LOG_FILE
-	echo "" 2>&1 | tee $LOG_FILE
+	echo "" 2>&1 | tee -a $LOG_FILE
 	${ISLANDORA_HOME}/bin/get_namespaces.sh 2>&1 | tee -a $LOG_FILE
 
 	for namespace in `cat ${ISLANDORA_HOME}/etc/namespaces.conf`;
