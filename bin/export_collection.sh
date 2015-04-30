@@ -15,7 +15,8 @@ LOG_FILE=${FEDORA_HOME}/server/logs/fedora-export.log
 
 echo "Starting fedora export on `date`" 2>&1 | tee -a $LOG_FILE
 echo "Exporting Collection: $COLLECTION" 2>&1 | tee -a $LOG_FILE
-	echo "" 2>&1 | tee -a $LOG_FILE
+echo "" 2>&1 | tee -a $LOG_FILE
+
 	mkdir $EXPORT_DIR/$COLLECTION 2>&1 | tee -a $LOG_FILE
 	for pid in `${ISLANDORA_HOME}/bin/find_pids.sh $COLLECTION`;
 	do
