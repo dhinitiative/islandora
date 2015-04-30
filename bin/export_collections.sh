@@ -47,13 +47,10 @@ else
 					echo "$EXPORT_DIR/$collection/$filename.xml already exists" 2>&1 | tee -a $LOG_FILE
 					echo "" 2>&1 | tee -a $LOG_FILE
 				else
-					${FEDORA_HOME}/client/bin/fedora-export.sh ${FULL_SERVER_NAME}:8080 ${FEDORA_ADMIN_USER} ${FEDORA_ADMIN_PASS} $pid info:fedora/fedora-system:FOXML-1.1 archiv
-e $EXPORT_DIR/$collection http 2>&1 | tee -a $LOG_FILE
+					${FEDORA_HOME}/client/bin/fedora-export.sh ${FULL_SERVER_NAME}:8080 ${FEDORA_ADMIN_USER} ${FEDORA_ADMIN_PASS} $pid info:fedora/fedora-system:FOXML-1.1 archive $EXPORT_DIR/$collection http 2>&1 | tee -a $LOG_FILE
 				fi
 			else
-					${FEDORA_HOME}/client/bin/fedora-export.sh ${FULL_SERVER_NAME}:8080 ${FEDORA_ADMIN_USER} ${FEDORA_ADMIN_PASS} $pid info:fedora/fedora-system:FOXML-1.1 archiv
-e $EXPORT_DIR/$collection http 2>&1 | tee -a $LOG_FILE
-
+					${FEDORA_HOME}/client/bin/fedora-export.sh ${FULL_SERVER_NAME}:8080 ${FEDORA_ADMIN_USER} ${FEDORA_ADMIN_PASS} $pid info:fedora/fedora-system:FOXML-1.1 archive $EXPORT_DIR/$collection http 2>&1 | tee -a $LOG_FILE
 			fi
 		done
 
