@@ -39,8 +39,24 @@ else
 	
 		for pid in `${ISLANDORA_HOME}/bin/find_pids.sh $collection`;
 		do
-			${FEDORA_HOME}/client/bin/fedora-export.sh ${FULL_SERVER_NAME}:8080 ${FEDORA_ADMIN_USER} ${FEDORA_ADMIN_PASS} $collection info:fedora/fedora-system:FOXML-1.1 archive $EXPORT_DIR/$collection http 2>&1 | tee -a $LOG_FILE
+			filename=`echo $pid | sed 's|:|_|g'`
+			if [ -f $EXPORT_DIR/$collection/$filename.xml ]
+			then
+				if [ -s $EXPORT_DIR/$collection/$filename.xml ]
+				then
+					echo "$EXPORT_DIR/$collection/$filename.xml already exists" 2>&1 | tee -a $LOG_FILE
+					echo "" 2>&1 | tee -a $LOG_FILE
+				else
+					${FEDORA_HOME}/client/bin/fedora-export.sh ${FULL_SERVER_NAME}:8080 ${FEDORA_ADMIN_USER} ${FEDORA_ADMIN_PASS} $pid info:fedora/fedora-system:FOXML-1.1 archiv
+e $EXPORT_DIR/$collection http 2>&1 | tee -a $LOG_FILE
+				fi
+			else
+					${FEDORA_HOME}/client/bin/fedora-export.sh ${FULL_SERVER_NAME}:8080 ${FEDORA_ADMIN_USER} ${FEDORA_ADMIN_PASS} $pid info:fedora/fedora-system:FOXML-1.1 archiv
+e $EXPORT_DIR/$collection http 2>&1 | tee -a $LOG_FILE
+
+			fi
 		done
+
 		echo "" 2>&1 | tee -a $LOG_FILE
 		echo "Done exporting $collection" 2>&1 | tee -a $LOG_FILE
 		echo "" 2>&1 | tee -a $LOG_FILE
