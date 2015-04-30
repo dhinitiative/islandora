@@ -16,7 +16,7 @@ for object in `ls -1 ${INGEST_DIR}`;
 do
 	echo "Starting batch ingest of objects...." 2>&1 | tee -a $LOG_FILE
 	echo "" 2>&1 | tee -a $LOG_FILE
-	${FEDORA_HOME}/client/bin/fedora-batch-ingest.sh $INGEST_DIR $LOG_FILE text info:fedora/fedora-system:FOXML-1.1 ${FULL_SERVER_NAME} 8080 ${FEDORA_ADMIN_USER} ${FEDORA_ADMIN_PASS} http 2>&1 | tee -a $LOG_FILE
+	${FEDORA_HOME}/client/bin/fedora-batch-ingest.sh $INGEST_DIR $LOG_FILE text info:fedora/fedora-system:FOXML-1.1 ${FULL_SERVER_NAME}:8080 ${FEDORA_ADMIN_USER} ${FEDORA_ADMIN_PASS} http 2>&1 | tee -a $LOG_FILE
 	echo "" 2>&1 | tee -a $LOG_FILE
 	echo "Done ingesting obects" 2>&1 | tee -a $LOG_FILE
 	echo "" 2>&1 | tee -a $LOG_FILE
