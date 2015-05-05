@@ -54,7 +54,10 @@ echo "" >> /etc/motd
 #
 #chmod 775 $INSTALL_PREFIX # change below to this but need to have INSTALL_PREFIX in env.sh first
 chmod 775 /opt
-
+if [ ! -d $SRC_DIR ]
+then
+	mkdir -p $SRC_DIR
+fi
 #
 # Install Java
 #
@@ -218,10 +221,7 @@ echo "run the command "alternatives --config java" and set it for java 8" >> /et
 	#
 	# End of Operating System Software Setup
 	#=======================================================
-        if [ ! -d $SRC_DIR ]
-        then
-        	mkdir -p $SRC_DIR
-        fi
+        
       	cd $SRC_DIR
 	#
 	# Needed for tesseract to find leptonica
