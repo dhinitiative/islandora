@@ -218,7 +218,11 @@ echo "run the command "alternatives --config java" and set it for java 8" >> /et
 	#
 	# End of Operating System Software Setup
 	#=======================================================
-        cd $SRC_DIR
+        if [ ! -d $SRC_DIR ]
+        then
+        	mkdir -p $SRC_DIR
+        fi
+      	cd $SRC_DIR
 	#
 	# Needed for tesseract to find leptonica
 	#
