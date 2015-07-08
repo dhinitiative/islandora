@@ -12,56 +12,6 @@
 #     Then run the installer.sh script to complete the installation of fedora commons. 
 #    % chmod 750 installer.sh; ./installer.sh
 
-
-
-#
-# dependancies
-#
-yum -y install perl-IO-Socket-SSL
-yum -y install perl-libwww-perl
-yum -y install perl-Crypt-SSLeay perl-Net-SSLeay
-
-#
-# get the package and install it
-#
-wget https://download.configserver.com/csf.tgz
-tar -zxvf csf.tgz
-cd csf 
-sh install.sh
-
-# 
-# now configure it
-#
-sed -i 's|TESTING = "1"|TESTING = "0"|g' /etc/csf/csf.conf
-sed -i 's|RESTRICT_SYSLOG = "0"|RESTRICT_SYSLOG = "3"|g' /etc/csf/csf.conf
-sed -i 's|SMTP_BLOCK = "0"|SMTP_BLOCK = "0"|g' /etc/csf/csf.conf
-# use the following to limit certain countries from access
-# sed -i 's|CC_DENY = ""|CC_DENY = "RU,CN,GE,BR,UA,SE,TH,CL,TW"|g' /etc/csf/csf.conf
-sed -i 's|SMTP_BLOCK = "0"|SMTP_BLOCK = "1"|g' /etc/csf/csf.conf
-sed -i 's|LF_SCRIPT_ALERT = "0"|LF_SCRIPT_ALERT = "1"|g' /etc/csf/csf.conf
-sed -i 's|SYSLOG_CHECK = "0"|SYSLOG_CHECK = "300"|g' /etc/csf/csf.conf
-sed -i 's|PT_ALL_USERS = "0"|PT_ALL_USERS = "1"|g' /etc/csf/csf.conf
-#
-# update sshd
-#
-sed -i 's|#UseDNS yes|UseDNS no|g' /etc/ssh/sshd_config
-#
-# update php
-#
-sed -i 's|enable_dl = On|enable_dl = Off|g' /usr/local/lib/php.ini
-#
-# update mysql (per http://dev.mysql.com/doc/mysql-security-excerpt/5.0/en/load-data-local.html)
-# 
-#
-echo "local-infile=0" >> /etc/my.cnf
-#
-# turn off portreserve
-#
-service portreserve stop
-chkconfig portreserve off
-
-# End CSF install
-
 #---------------------------------------------
 #
 # Variable Declaration (edit for your setup)
@@ -118,6 +68,61 @@ export FEDORA_ADMIN_USER="fedoraAdmin"              # Username for http://localh
 export FEDORA_ADMIN_PASS='fedoraadminpass'          # Password for http://localhost:8080/fedora/admin
 export FEDORA_GSEARCH_ADMIN_USER="fgsAdmin"         # Username for http://localhost:8080/fedoragsearch
 export FEDORA_GSEARCH_ADMIN_PASS='fgsadminpass'     # Password for http://localhost:8080/fedoragsearch
+
+# Begin CSF Firewall installation
+#
+# dependancies
+#
+yum -y install perl-IO-Socket-SSL
+yum -y install perl-libwww-perl
+yum -y install perl-Crypt-SSLeay perl-Net-SSLeay
+
+#
+# get the package and install it
+#
+cd /tmp
+wget https://download.configserver.com/csf.tgz
+tar -zxvf csf.tgz
+cd csf 
+sh install.sh
+
+# 
+# now configure it
+#
+sed -i 's|TESTING = "1"|TESTING = "0"|g' /etc/csf/csf.conf
+sed -i 's|RESTRICT_SYSLOG = "0"|RESTRICT_SYSLOG = "3"|g' /etc/csf/csf.conf
+sed -i 's|SMTP_BLOCK = "0"|SMTP_BLOCK = "0"|g' /etc/csf/csf.conf
+# use the following to limit certain countries from access
+# sed -i 's|CC_DENY = ""|CC_DENY = "RU,CN,GE,BR,UA,SE,TH,CL,TW"|g' /etc/csf/csf.conf
+sed -i 's|SMTP_BLOCK = "0"|SMTP_BLOCK = "1"|g' /etc/csf/csf.conf
+sed -i 's|LF_SCRIPT_ALERT = "0"|LF_SCRIPT_ALERT = "1"|g' /etc/csf/csf.conf
+sed -i 's|SYSLOG_CHECK = "0"|SYSLOG_CHECK = "300"|g' /etc/csf/csf.conf
+sed -i 's|PT_ALL_USERS = "0"|PT_ALL_USERS = "1"|g' /etc/csf/csf.conf
+#
+# update sshd
+#
+sed -i 's|#UseDNS yes|UseDNS no|g' /etc/ssh/sshd_config
+#
+# update php
+#
+sed -i 's|enable_dl = On|enable_dl = Off|g' /usr/local/lib/php.ini
+#
+# update mysql (per http://dev.mysql.com/doc/mysql-security-excerpt/5.0/en/load-data-local.html)
+# 
+#
+echo "local-infile=0" >> /etc/my.cnf
+#
+# turn off portreserve
+#
+service portreserve stop
+chkconfig portreserve off
+
+/bin/rm -r /tmp/csf
+/bin/rm  /tmp/csf.tgz
+cd $INSTALL_PREFIX
+
+
+# End CSF install
 
 #
 # Set up mail alias for root
