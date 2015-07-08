@@ -9,6 +9,9 @@
 #     ( one for Fedora Commons and one for Drupal )
 #
 # - Make sure you set the usernames and passwords for the environment variables below. 
+#     Then run the installer.sh script to complete the installation of fedora commons. 
+#    % chmod 750 installer.sh; ./installer.sh
+
 
 
 #
