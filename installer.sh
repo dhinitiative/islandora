@@ -89,7 +89,7 @@ export DURACLOUD="No"                              # Install duracloud
 export FEDORA_HOME=$INSTALL_PREFIX/fedora
 export FEDORA_USER=fedora
 export FEDORA_USER_PASS='fedora2014'
-export ISLANDORA_HOME=$INSTALL_PREFIX/islandora
+export ISLANDORA_HOME=$INSTALL_PREFIX
 export SOLR_HOME=$INSTALL_PREFIX/solr
 export JAVA_HOME=${INSTALL_PREFIX}/java
 #
