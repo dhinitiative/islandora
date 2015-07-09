@@ -68,7 +68,7 @@ export FEDORA_ADMIN_USER="fedoraAdmin"              # Username for http://localh
 export FEDORA_ADMIN_PASS='fedoraadminpass'          # Password for http://localhost:8080/fedora/admin
 export FEDORA_GSEARCH_ADMIN_USER="fgsAdmin"         # Username for http://localhost:8080/fedoragsearch
 export FEDORA_GSEARCH_ADMIN_PASS='fgsadminpass'     # Password for http://localhost:8080/fedoragsearch
-export INSTALL_LOG=${INSTALL_PREFIX}
+export INSTALL_LOG=${INSTALL_PREFIX}/installation.log
 
 # Begin CSF Firewall installation
 #
