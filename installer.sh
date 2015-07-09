@@ -68,6 +68,7 @@ export FEDORA_ADMIN_USER="fedoraAdmin"              # Username for http://localh
 export FEDORA_ADMIN_PASS='fedoraadminpass'          # Password for http://localhost:8080/fedora/admin
 export FEDORA_GSEARCH_ADMIN_USER="fgsAdmin"         # Username for http://localhost:8080/fedoragsearch
 export FEDORA_GSEARCH_ADMIN_PASS='fgsadminpass'     # Password for http://localhost:8080/fedoragsearch
+export INSTALL_LOG=${INSTALL_PREFIX}
 
 # Begin CSF Firewall installation
 #
@@ -150,23 +151,23 @@ cd $ISLANDORA_HOME/sbin
 #
 #---------------------------------------------
 #
-./software_dependancies.install
-./apache.install
+script -ac ./software_dependancies.install ${INSTALL_LOG}
+script -ac ./apache.install ${INSTALL_LOG}
 if [ $INSTALL_MYSQL == "Yes" ]; then
-    ./mysql.install
+    script -ac ./mysql.install ${INSTALL_LOG}
 fi
 if [ $INSTALL_DRUPAL == "Yes" ]; then
-./drupal.install
+script -ac ./drupal.install ${INSTALL_LOG}
 fi
-./fedora.install
-./gsearch.install
-./solr.install
-./djatoka.install
+script -ac ./fedora.install ${INSTALL_LOG}
+script -ac ./gsearch.install ${INSTALL_LOG}
+script -ac ./solr.install ${INSTALL_LOG}
+script -ac ./djatoka.install ${INSTALL_LOG}
 if [ $DURACLOUD == "Yes" ]; then
-./duracloud.install
+script -ac ./duracloud.install ${INSTALL_LOG}
 fi
 if [ $INSTALL_ISLANDORA == "Yes" ]; then
-./islandora_modules.install
+script -ac ./islandora_modules.install ${INSTALL_LOG}
 fi
-./set_permissions.sh
+script -ac ./set_permissions.sh ${INSTALL_LOG}
 reboot
