@@ -30,7 +30,7 @@ yum -y install gcc
 yum -y install gcc-c++
 yum -y install autoconf
 yum -y install automake
-yum -y installl libtool
+yum -y install libtool
 yum -y install make
 yum -y install nasm
 yum -y install pkgconfig
