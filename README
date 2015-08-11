@@ -6,14 +6,14 @@ http://creativecommons.org/licenses/by/4.0/deed.en_US
 Based on a work at http://github.com/dhinitiative/islandora.git.
 Permissions beyond the scope of this license may be available at http://www.hamilton.edu.
 
-#
-# Revisions
-#
+
 # 2/5/2014 - SLY - Initial Creation
 
 This suite of software will install an Islandora Repository Server. 
 
-		- Fedora Commons 3.5
+		- Fedora Commons 3.8.1
+		- Solr 4.2.0
+		- Fedora Gsearch 2.6
 		- Islandora 7.x-1.2
 		- Drupal 7
 
