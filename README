@@ -80,7 +80,7 @@ Installation:
 	1.) on a fresh CentOS 6 based server clone the git repository
 	
 		% cd /opt
-		% git clone https://github.com/dhinitiative/islandora
+		% git clone https://github.com/dhinitiative/islandora.git
 		% cd islandora
 		
 	2.) Modify installer.sh with your information
