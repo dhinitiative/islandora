@@ -9,15 +9,16 @@ Permissions beyond the scope of this license may be available at http://www.hami
 
 # 2/5/2014 - SLY - Initial Creation
 
-This suite of software will install an Islandora Repository Server. 
+This suite of software will install a Fedora Commons Repository Server. 
 
 		- Fedora Commons 3.8.1
 		- Solr 4.2.0
 		- Fedora Gsearch 2.6
+		
+	Included older scripts. 
 		- Islandora 7.x-1.2
 		- Drupal 7
 
-It is assumed that you have created two MySQL databases. One for Drupal and one for Fedora Commons. 
 
 This software branch is used in the installation of Islandora, fedora, drupal.
 
