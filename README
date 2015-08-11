@@ -9,7 +9,7 @@ Permissions beyond the scope of this license may be available at http://www.hami
 
 # 2/5/2014 - SLY - Initial Creation
 
-This suite of software will install a Fedora Commons Repository Server. 
+This suite of software will install a Fedora Commons Repository on a CentOS 6 based server. 
 
 		- Fedora Commons 3.8.1
 		- Solr 4.2.0
@@ -19,13 +19,23 @@ This suite of software will install a Fedora Commons Repository Server.
 		- Islandora 7.x-1.2
 		- Drupal 7
 
+This repository was forked from original work at https://github.com/hpcham/islandora. 
+The original code in that repository will install fedora commons 3.5, with Drupal and Islandora modules
+on the same server. This is a good setup to get started with this technology but as you start to build collections 
+you will need to separate the different processes onto different servers. In order to facilitate better administration
+of Drupal and Islandora we've made the choice to utilize cPanel (http://cpanel.com) to house our Drupal instances
+with the Islandora drupal modules. With that said, this repository will build a fedora commons server (v3.8.1) with
+all the parts needed to connect a Drupal/Islandora site. I've included the original older installation scripts of Drupal
+and Islandora which you can use at your own risk as they haven't been tested and include older Islandora modules. 
 
-This software branch is used in the installation of Islandora, fedora, drupal.
+It is recommended that you modify the installer.sh script so that you don't install Drupal and Islandora. 
 
-It is called from a RedHat based kickstart server installer 
-(https://github.com/dhinitiative/kickstart/blob/master/ks_islandora.cfg)
 
-(note: you can comment out the kickstart portion of the above file and run it directly as a script). 
+This software branch is used in the installation of a Fedora Commons Repository server. 
+
+It is installed by running the included installer.sh script. Please modify the script with your 
+variables before running it. 
+
 
 Directory Contents
 -------------------
