@@ -24,7 +24,8 @@ The original code in that repository will install fedora commons 3.5, with Drupa
 This is a good setup to get started with this technology but as you start to build collections you will need to separate the different processes onto different servers. 
 
 In order to facilitate better administration of Drupal and Islandora we've made the choice to utilize cPanel (http://cpanel.com) to house our Drupal instances with the Islandora drupal modules. 
-With that said, this repository will build a fedora commons server (v3.8.1) with all the parts needed to connect a Drupal/Islandora site to it. I've included the original older installation scripts of Drupal and Islandora which you can use at your own risk as they haven't been tested and include older Islandora modules. 
+With that said, this repository will build a fedora commons server (v3.8.1) with all the parts needed to connect a Drupal/Islandora site to it. 
+I've included the original older installation scripts of Drupal and Islandora which you can use at your own risk as they haven't been tested and include older Islandora modules. 
 
 It is recommended that you modify the installer.sh script so that you don't install Drupal and Islandora. 
 
