@@ -74,5 +74,22 @@ islandora -		Top Level directory. The idea here is this directory
 			if you set the home directory of the local fedora user 
 			to this location (ie. /opt/islandora).
 			
-			
+		
+Installation:
+
+	1.) on a fresh CentOS 6 based server clone the git repository
+	
+		% cd /opt
+		% git clone https://github.com/dhinitiative/islandora
+		% cd islandora
+		
+	2.) Modify installer.sh with your information
+	
+		% vi installer.sh
+	
+	3.) Execute the build
+	
+		% chmod 755 installer.sh; ./installer.sh
+	
+	4.) Wait for machine to build as it might take a while to build everything depending on your server resources. 
 			
