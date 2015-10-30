@@ -82,6 +82,12 @@ if [ $SOLR_VERSION == "4.2.0" ]; then
   chown -R $FEDORA_USER:$FEDORA_USER basic-solr-config
   cp basic-solr-config/foxmlToSolr.xslt ${CATALINA_HOME}/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/
   cp -r basic-solr-config/islandora_transforms ${CATALINA_HOME}/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/
+  #
+  # modify the gsearch files.. they have hardcoded /usr/local/fedora but we're installing in /opt/fedora
+  #
+  sed -i "s|\/usr\/local\/fedora|${FEDORA_HOME}|g" ${CATALINA_HOME}/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/foxmlToSolr.xslt  
+  sed -i "s|\/usr\/local\/fedora|${FEDORA_HOME}|g" ${CATALINA_HOME}/webapps/fedoragsearch/WEB-INF/classes/fgsconfigFinal/index/FgsIndex/islandora_transforms/slurp_all_MODS_to_solr.xslt
+
 fi
 #
 # install web.xml
