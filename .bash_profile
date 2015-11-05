@@ -13,3 +13,4 @@ export PATH
 
 . ~/etc/env.sh
 
+PS1='[\u@\h]\$ '
