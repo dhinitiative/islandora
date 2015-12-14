@@ -60,7 +60,7 @@ done
 #
 ## install jwplayer
 # 
-wget -N -P $SRC_DIR https://account.longtailvideo.com/static/download/jwplayer-6.7.zip
+wget -N -P $SRC_DIR https://account.longtailvideo.com/static/download/jwplayer-6.12.zip
 unzip $SRC_DIR/jwplayer-6.7.zip -d $DRUPAL_ROOT/sites/all/libraries
 #
 # put stuff in sites/all/libraries
