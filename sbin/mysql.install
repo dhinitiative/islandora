@@ -27,6 +27,9 @@
 #
 # install mysql
 #
+if [ `cat /etc/centos-release| awk '{print $4}' | awk -F. '{print $1}'` == "7" ]; then
+   yum install -y mariadb-server
+fi
 yum install -y mysql
 yum install -y mysqld
 yum install -y mysql-server
