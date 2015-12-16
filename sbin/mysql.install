@@ -29,6 +29,8 @@
 #
 if [ `cat /etc/centos-release| awk '{print $4}' | awk -F. '{print $1}'` == "7" ]; then
    yum install -y mariadb-server
+   systemctl enable mariadb
+   systemctl start mariadb
 fi
 yum install -y mysql
 yum install -y mysqld
@@ -48,8 +50,7 @@ service mysqld start
 sleep 20
 service mysqld stop
 if [ `cat /etc/centos-release| awk '{print $4}' | awk -F. '{print $1}'` == "7" ]; then
-   systemctl enable mariadb
-   systemctl start mariadb
+   systemctl stop mariadb
 fi
 #
 # configure mysql
@@ -67,6 +68,9 @@ rm -f /tmp/mysql_init
 # Make sure it's running
 #
 service mysqld start
+if [ `cat /etc/centos-release| awk '{print $4}' | awk -F. '{print $1}'` == "7" ]; then
+   systemctl start mariadb
+fi
 
 #
 # Remind to execute /usr/bin/mysql_secure_installation
