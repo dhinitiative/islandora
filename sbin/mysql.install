@@ -29,7 +29,6 @@
 #
 if [ `cat /etc/centos-release| awk '{print $4}' | awk -F. '{print $1}'` == "7" ]; then
    yum install -y mariadb-server
-   systemctl enable mariadb
 fi
 yum install -y mysql
 yum install -y mysqld
@@ -48,6 +47,10 @@ chkconfig mysqld on
 service mysqld start
 sleep 20
 service mysqld stop
+if [ `cat /etc/centos-release| awk '{print $4}' | awk -F. '{print $1}'` == "7" ]; then
+   systemctl enable mariadb
+   systemctl start mariadb
+fi
 #
 # configure mysql
 #
