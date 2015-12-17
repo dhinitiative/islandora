@@ -30,8 +30,8 @@
 if [ `cat /etc/centos-release| awk '{print $4}' | awk -F. '{print $1}'` == "7" ]; then
    yum install -y mariadb-server
    systemctl enable mariadb
-   systemctl start mariadb
-   /usr/bin/mysqld_safe --basedir=/usr &
+   #systemctl start mariadb
+   #/usr/bin/mysqld_safe --basedir=/usr &
 fi
 yum install -y mysql
 yum install -y mysqld
@@ -47,26 +47,26 @@ yum install -y php-mysqli
 # Make sure it's running at boot
 #
 chkconfig mysqld on
-service mysqld start
-sleep 20
-service mysqld stop
-if [ `cat /etc/centos-release| awk '{print $4}' | awk -F. '{print $1}'` == "7" ]; then
-   systemctl stop mariadb
-   pkill mysql
-fi
+#service mysqld start
+#sleep 20
+#service mysqld stop
+#if [ `cat /etc/centos-release| awk '{print $4}' | awk -F. '{print $1}'` == "7" ]; then
+   #systemctl stop mariadb
+   #kill -9 `cat /var/run/mariadb/mariadb.pid`
+#fi
 #
 # configure mysql
 #
 ## Change root account
 #
-#/usr/bin/mysqladmin -u root -h $DB_SERVER password '$ROOT_MYSQL_PASS'
-echo "UPDATE mysql.user SET Password=PASSWORD('$ROOT_MYSQL_PASS') WHERE User='root';" > /tmp/mysql_init
-echo "FLUSH PRIVILEGES;" >> /tmp/mysql_init
-/usr/bin/mysqld_safe --init-file=/tmp/mysql_init &
-sleep 20
-service mysqld stop
-pkill mysql
-rm -f /tmp/mysql_init
+##/usr/bin/mysqladmin -u root -h $DB_SERVER password '$ROOT_MYSQL_PASS'
+#echo "UPDATE mysql.user SET Password=PASSWORD('$ROOT_MYSQL_PASS') WHERE User='root';" > /tmp/mysql_init
+#echo "FLUSH PRIVILEGES;" >> /tmp/mysql_init
+#/usr/bin/mysqld_safe --init-file=/tmp/mysql_init &
+#sleep 20
+#service mysqld stop
+#kill -9 `cat /var/run/mariadb/mariadb.pid`
+#rm -f /tmp/mysql_init
 #
 # Make sure it's running
 #
