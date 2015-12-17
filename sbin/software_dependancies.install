@@ -81,7 +81,7 @@ echo "run the command "alternatives --config java" and set it for java 8" >> /et
 #fi
 
 
-#if [ $INSTALL_ISLANDORA == "Yes" ]; then
+
 	#
 	# Enable EPEL
 	#
@@ -90,6 +90,8 @@ echo "run the command "alternatives --config java" and set it for java 8" >> /et
 	# install epel packages
 	#
 	yum -y install gdisk
+	
+	if [ $INSTALL_ISLANDORA == "Yes" ]; then
 	#
 	# Enable RPM Fusion Repo
 	#
@@ -261,4 +263,4 @@ echo "run the command "alternatives --config java" and set it for java 8" >> /et
 	tar -zxvf tesseract-ocr-3.02.eng.tar.gz
 	cp -r tesseract-ocr/tessdata/eng.* $ISLANDORA_HOME/share/tessdata
 	chown -R fedora:fedora /opt/islandora/share/tessdata/eng.*
-#fi
+fi
