@@ -40,7 +40,11 @@ install_properties_file="install.properties-fedora"
 #
 ## Create Fedora DB and user
 #
-mysql -u root -p$ROOT_MYSQL_PASS -e "create database $FEDORA_DB_NAME; GRANT ALL PRIVILEGES ON $FEDORA_DB_NAME.* TO $FEDORA_DB_USER@localhost IDENTIFIED BY '$FEDORA_DB_PASS'"
+if [ `cat /etc/centos-release| awk '{print $4}' | awk -F. '{print $1}'` == "7" ]; then
+   mysql -u root -e "create database $FEDORA_DB_NAME; GRANT ALL PRIVILEGES ON $FEDORA_DB_NAME.* TO $FEDORA_DB_USER@localhost IDENTIFIED BY '$FEDORA_DB_PASS'"
+else
+   mysql -u root -p$ROOT_MYSQL_PASS -e "create database $FEDORA_DB_NAME; GRANT ALL PRIVILEGES ON $FEDORA_DB_NAME.* TO $FEDORA_DB_USER@localhost IDENTIFIED BY '$FEDORA_DB_PASS'"
+fi
 
 if [ $FEDORA_VERSION == "3.5" ]; then
   #
